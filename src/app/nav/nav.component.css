@@ -1,0 +1,44 @@
+#nav-container {
+    height: 48px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.nav-container a {
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.nav-container a:hover {
+    background-color: #6ebdc8;
+    color: #3c4859;
+}
+
+.pure-menu-children > li {
+    background-color: #3c4859;
+}
+
+.sub-menu:hover {
+    border-radius: 0;
+}
+
+#logo {
+    font-family: logo-font;
+    font-size: 30px;
+    color: #C3CEE2;
+    display: inline-block;
+    padding: 8px;
+    padding-left: 12px;
+}
+
+@media screen and (max-width: 920px) {
+    .menu-lable {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 531px) {
+    #logo {
+        display: none;
+    }
+}

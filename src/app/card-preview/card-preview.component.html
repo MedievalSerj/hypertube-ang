@@ -1,0 +1,20 @@
+<div class="card card-preview">
+  <div class="text-right">
+    <div class="dummy_div"></div>
+    <div class="watched" *ngIf="is_seen">
+      watched
+    </div>
+  </div>
+  <h4 class="card-preview-heading">{{ title }}</h4>
+  <div class="movie-img"
+        [style.background]="'url(' + img_url + ')'">
+  </div>
+  <p class="card-preview-text">
+    Year: {{ year }}
+    <br>
+    Rating: {{ rating }}
+  </p>
+</div>
+
+<!--style="background: url('assets/img/pic_8.png') no-repeat center;"-->
+<!--[style.background]="'url(' + img_url + ') no-repeat center'"-->
