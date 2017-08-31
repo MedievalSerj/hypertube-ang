@@ -6,6 +6,8 @@ import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { CardPreviewComponent } from './card-preview/card-preview.component';
+import { GalleryPreviewComponent } from './gallery-preview/gallery-preview.component';
+import {PreviewsService} from './previews.service';
 
 @NgModule({
   declarations: [
@@ -13,12 +15,13 @@ import { CardPreviewComponent } from './card-preview/card-preview.component';
     NavComponent,
     FooterComponent,
     GalleryComponent,
-    CardPreviewComponent
+    CardPreviewComponent,
+    GalleryPreviewComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [PreviewsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
