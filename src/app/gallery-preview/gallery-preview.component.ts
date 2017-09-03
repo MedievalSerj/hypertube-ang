@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PreviewsService} from '../previews.service';
+import {CardPreviewComponent} from '../card-preview/card-preview.component';
 
 
 @Component({
@@ -9,13 +10,16 @@ import {PreviewsService} from '../previews.service';
 })
 export class GalleryPreviewComponent implements OnInit {
 
-  public previews;
+  public previews: CardPreviewComponent[] = [];
 
-  constructor(previews: PreviewsService) {
-    this.previews = previews.getPreviews();
+  constructor(private preview_service: PreviewsService) {
+  }
+
+  getPreviews(): void {
+    this.previews = this.preview_service.getPreviews();
   }
 
   ngOnInit() {
+    this.getPreviews();
   }
-
 }

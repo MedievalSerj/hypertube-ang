@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-card-preview',
@@ -6,40 +7,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-preview.component.css']
 })
 export class CardPreviewComponent implements OnInit {
+  @Input() id: number;
+  @Input() title: string;
+  @Input() year: number;
+  @Input() rating: number;
+  @Input() img_url: string;
+  @Input() is_seen: boolean;
 
-  // is_seen: boolean;
-  // title: string;
-  // year: number;
-  // rating: number;
-  // img_url: string;
+  @ViewChild('movieImg') movoeImg;
 
-  // public is_seen = true;
-  // public title = 'Yet another movie';
-  // public year = 2016;
-  // public rating = 1233;
-  // public img_url = 'assets/img/pic_8.png';
-
-
-  // constructor(title: string,
-  //             year: number,
-  //             rating: number,
-  //             img_url: string,
-  //             is_seen: boolean) {
-  //   this.is_seen = is_seen;
-  //   this.title = title;
-  //   this.year = year;
-  //   this.rating = rating;
-  //   this.img_url = img_url;
-  // }
-
-
-  constructor(public title: string,
-              public year: number,
-              public rating: number,
-              public img_url: string,
-              public is_seen: boolean) {
+  constructor(private router: Router,) {
   }
 
   ngOnInit() {
+    this.resizeImg();
+  }
+
+  resizeImg() {
+    let my_img = this.movoeImg;
+    let width = my_img.nativeElement.clientWidth;
+    my_img.nativeElement.style.height = width * 500 / 430 + 'px';
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.resizeImg();
+  }
+
+  public watch(event) {
+    this.router.navigate(['/watch', this.title, this.id]);
   }
 }

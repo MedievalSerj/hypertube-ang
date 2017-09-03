@@ -9,6 +9,10 @@
     border-radius: 5px;
 }
 
+.pure-menu-item > a:visited {
+    background-color: #3c4859;
+}
+
 .nav-container a:hover {
     background-color: #6ebdc8;
     color: #3c4859;
@@ -17,6 +21,11 @@
 .pure-menu-children > li {
     background-color: #3c4859;
 }
+
+.pure-menu-selected .pure-menu-link, .pure-menu-selected .pure-menu-link:visited {
+  color: #2fa8c7 !important;
+}
+
 
 .sub-menu:hover {
     border-radius: 0;

@@ -27,9 +27,7 @@
         "static/css/main.css",
         "static/css/colors.css"
       ],
-      "scripts": [
-        "static/js/img_height.js"
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

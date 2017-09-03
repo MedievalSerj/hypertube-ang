@@ -1,12 +1,12 @@
-<div class="card card-preview">
+<div class="card card-preview" (click)="watch($event)">
   <div class="text-right">
-    <div class="dummy_div"></div>
+    <div class="dummy_div">watched</div>
     <div class="watched" *ngIf="is_seen">
       watched
     </div>
   </div>
-  <h4 class="card-preview-heading">{{ title }}</h4>
-  <div class="movie-img"
+  <h4 class="card-preview-heading">{{ title | slice:0:20 }}</h4>
+  <div #movieImg class="movie-img"
         [style.background]="'url(' + img_url + ')'">
   </div>
   <p class="card-preview-text">
