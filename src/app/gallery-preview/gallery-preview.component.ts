@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PreviewsService} from '../previews.service';
+import {PreviewsService} from '../services/previews.service';
 import {CardPreviewComponent} from '../card-preview/card-preview.component';
 
 

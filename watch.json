@@ -1,4 +1,5 @@
 //     /watch/<id:int>/<title:string>
+//     /watch/<id:int>
 {
   "id": 1,
   "title": "Kill switch",
