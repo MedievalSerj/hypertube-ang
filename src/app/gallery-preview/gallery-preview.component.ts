@@ -10,7 +10,7 @@ import {CardPreviewComponent} from '../card-preview/card-preview.component';
 })
 export class GalleryPreviewComponent implements OnInit {
 
-  public previews: CardPreviewComponent[] = [];
+  public previews: any[] = [];
 
   constructor(private preview_service: PreviewsService) {
   }
@@ -22,6 +22,10 @@ export class GalleryPreviewComponent implements OnInit {
   ngOnInit() {
     // this.getPreviews();
     this.preview_service.readAll()
-      .subscribe(response => this.previews = response);
+      // .subscribe(response => console.log(response['search_results']));
+      .subscribe(response => {
+        // console.log(response['search_results']);
+        this.previews = response['search_results'];
+      });
   }
 }
