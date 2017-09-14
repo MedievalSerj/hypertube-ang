@@ -4,25 +4,56 @@
       <input formControlName="login" class="width-100" id="login" type="text" placeholder="Login">
       <div *ngIf="login.touched &&
                   login.invalid" class="text-warning">
-        <div *ngIf="login.errors.required">login is required</div>
-        <div *ngIf="login.errors.minlength">login should be at least {{ login.errors.minlength.requiredLength }} charackters long</div>
+        <div *ngIf="login.errors.required">this field is required</div>
+        <div *ngIf="login.errors.minlength">login should be at least {{ login.errors.minlength.requiredLength }}
+          charackters long
+        </div>
+        <div *ngIf="login.errors.cannotContainSpecial">login can consist from letters, numbers, "_" and "-"</div>
+        <div *ngIf="login.errors.maxLenthReached">login should be not more than 128 characters long</div>
       </div>
     </div>
     <div class="ma-b-10">
       <input formControlName="first_name" class="width-100" id="first_name" type="text" placeholder="First name">
+      <div *ngIf="first_name.touched && first_name.invalid" class="text-warning">
+        <div *ngIf="first_name.errors.required">this field is required</div>
+        <div *ngIf="first_name.errors.minlength">should be at least {{ first_name.errors.minlength.requiredLength }}
+          character long
+        </div>
+        <div *ngIf="first_name.errors.onlyLetters">can contain only letters</div>
+      </div>
     </div>
     <div class="ma-b-10">
       <input formControlName="last_name" class="width-100" id="last_name" type="text" placeholder="Last name">
+      <div *ngIf="last_name.touched && last_name.invalid" class="text-warning">
+        <div *ngIf="last_name.errors.required">this field is required</div>
+        <div *ngIf="last_name.errors.minlength">should be at least {{ last_name.errors.minlength.requiredLength }}
+          character long
+        </div>
+        <div *ngIf="last_name.errors.onlyLetters">can contain only letters</div>
+      </div>
     </div>
     <div class="ma-b-10">
       <input formControlName="email" class="width-100" id="email" type="text" placeholder="e-mail">
+      <div *ngIf="email.touched && email.invalid" class="text-warning">
+        <div *ngIf="email.errors.myEmail">not a valid email</div>
+      </div>
     </div>
+
     <div class="ma-b-10 pure-control-group">
       <input formControlName="passwd" class="width-100" id="passwd" type="password" placeholder="Password">
+      <div *ngIf="passwd.touched && passwd.invalid" class="text-warning">
+        <div *ngIf="passwd.errors.myPassword">should be at least 8 characters long, contain numbers and letters</div>
+      </div>
     </div>
     <div class="ma-b-10 pure-control-group">
-      <input formControlName="confirm_passwd" class="width-100" id="confirm_passwd" type="password" placeholder="Confirm password">
+      <input formControlName="confirm_passwd" class="width-100" id="confirm_passwd" type="password"
+             placeholder="Confirm password">
+      <div *ngIf="confirm_passwd.touched && confirm_passwd.invalid" class="text-warning">
+        <div *ngIf="confirm_passwd.errors.required">this field is required</div>
+      </div>
+      <div *ngIf="passwd.valid && form.invalid && form.errors.confirmPassword" class="text-warning">passwords do not match</div>
     </div>
+
     <button class="ma-b-10 width-100 pure-button pure-button-primary">SIGN UP</button>
   </fieldset>
 </form>
