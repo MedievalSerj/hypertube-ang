@@ -18,6 +18,8 @@ import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HttpModule} from '@angular/http';
 import { DataService } from './services/data.service';
+import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,10 +35,13 @@ import { DataService } from './services/data.service';
     ProfilePageComponent,
     SignInPageComponent,
     SignUpPageComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    SignUpFormComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot([
       { path: '', component: GalleryComponent },

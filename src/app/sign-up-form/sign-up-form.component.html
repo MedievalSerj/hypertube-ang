@@ -1,0 +1,28 @@
+<form [formGroup]="form" class="pure-form">
+  <fieldset>
+    <div class="ma-b-10">
+      <input formControlName="login" class="width-100" id="login" type="text" placeholder="Login">
+      <div *ngIf="login.touched &&
+                  login.invalid" class="text-warning">
+        <div *ngIf="login.errors.required">login is required</div>
+        <div *ngIf="login.errors.minlength">login should be at least {{ login.errors.minlength.requiredLength }} charackters long</div>
+      </div>
+    </div>
+    <div class="ma-b-10">
+      <input formControlName="first_name" class="width-100" id="first_name" type="text" placeholder="First name">
+    </div>
+    <div class="ma-b-10">
+      <input formControlName="last_name" class="width-100" id="last_name" type="text" placeholder="Last name">
+    </div>
+    <div class="ma-b-10">
+      <input formControlName="email" class="width-100" id="email" type="text" placeholder="e-mail">
+    </div>
+    <div class="ma-b-10 pure-control-group">
+      <input formControlName="passwd" class="width-100" id="passwd" type="password" placeholder="Password">
+    </div>
+    <div class="ma-b-10 pure-control-group">
+      <input formControlName="confirm_passwd" class="width-100" id="confirm_passwd" type="password" placeholder="Confirm password">
+    </div>
+    <button class="ma-b-10 width-100 pure-button pure-button-primary">SIGN UP</button>
+  </fieldset>
+</form>

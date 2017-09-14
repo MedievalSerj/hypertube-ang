@@ -275,6 +275,12 @@ body {
     text-align: center !important;
 }
 
+/*TEXT-STYLING*/
+
+.text-warning {
+  color: #e77e85;
+}
+
 /*DISPLAY-OPTIONS*/
 
 .display-inline-block {

@@ -15,16 +15,11 @@ export class GalleryPreviewComponent implements OnInit {
   constructor(private preview_service: PreviewsService) {
   }
 
-  // getPreviews(): void {
-  //   this.previews = this.preview_service.readAll();
-  // }
 
   ngOnInit() {
-    // this.getPreviews();
     this.preview_service.readAll()
-      // .subscribe(response => console.log(response['search_results']));
       .subscribe(response => {
-        // console.log(response['search_results']);
+        console.log(response['search_results']);
         this.previews = response['search_results'];
       });
   }
