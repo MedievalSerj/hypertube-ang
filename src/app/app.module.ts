@@ -20,6 +20,8 @@ import { HttpModule} from '@angular/http';
 import { DataService } from './services/data.service';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { EditProfileFormComponent } from './edit-profile-form/edit-profile-form.component';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     SignUpPageComponent,
     ResetPasswordComponent,
     SignUpFormComponent,
+    EditProfileFormComponent
   ],
   imports: [
     BrowserModule,
