@@ -9,27 +9,29 @@ import {MyValidators} from '../common/validators/my.validators';
   styleUrls: ['./sign-up-form.component.css']
 })
 export class SignUpFormComponent {
-  form: FormGroup;
+  form;
 
   constructor(fb: FormBuilder) {
     this.form = fb.group({
-      login: ['', Validators.required,
+      login: ['',
+        [Validators.required,
         Validators.minLength(3),
         MyValidators.cannotContainSpecial,
-        MyValidators.maxLenthReached],
-      first_name: ['', Validators.required,
+        MyValidators.maxLenthReached]],
+      first_name: ['',
+        [Validators.required,
         Validators.minLength(2),
-        MyValidators.onlyLetters],
+        MyValidators.onlyLetters]],
       last_name: ['',
-        Validators.required,
+        [Validators.required,
         Validators.minLength(2),
-        MyValidators.onlyLetters
+        MyValidators.onlyLetters]
       ],
       email: ['',
-        MyValidators.myEmail,
+        [MyValidators.myEmail]
       ],
-      passwd: ['', MyValidators.myPassword],
-      confirm_passwd: ['', Validators.required],
+      passwd: ['', [MyValidators.myPassword]],
+      confirm_passwd: ['', [Validators.required]],
     }, {validator: MyValidators.confirmPassword});
   }
 

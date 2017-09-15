@@ -51,7 +51,7 @@
       <div *ngIf="confirm_passwd.touched && confirm_passwd.invalid" class="text-warning">
         <div *ngIf="confirm_passwd.errors.required">this field is required</div>
       </div>
-      <div *ngIf="passwd.valid && form.invalid && form.errors.confirmPassword" class="text-warning">passwords do not match</div>
+        <div *ngIf="confirm_passwd.touched && passwd.valid && form.errors && form.errors.confirmPassword" class="text-warning">passwords do not match</div>
     </div>
 
     <button class="ma-b-10 width-100 pure-button pure-button-primary">SIGN UP</button>
