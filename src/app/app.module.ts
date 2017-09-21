@@ -21,7 +21,8 @@ import { DataService } from './services/data.service';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditProfileFormComponent } from './edit-profile-form/edit-profile-form.component';
-import {ValidationService} from './services/validation.service';
+import {LoginValidationService} from './services/login.validation.service';
+import {EmailValidationService} from './services/email-validation.service';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import {ValidationService} from './services/validation.service';
   providers: [
     DataService,
     PreviewsService,
-    ValidationService
+    LoginValidationService,
+    EmailValidationService
   ],
   bootstrap: [AppComponent]
 })

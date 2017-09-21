@@ -40,6 +40,7 @@
       <div *ngIf="email.touched && email.invalid" class="text-warning">
         <div *ngIf="email.errors.myEmail">not a valid email</div>
       </div>
+      <div *ngIf="email.invalid && email.errors.emailOccupied" class="text-warning">email occupied</div>
     </div>
 
     <div class="ma-b-10 pure-control-group">

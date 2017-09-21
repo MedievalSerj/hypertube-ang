@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {Validators, FormBuilder, AbstractControl, ValidationErrors} from '@angular/forms';
 import {MyValidators} from '../common/validators/my.validators';
-import {ValidationService} from '../services/validation.service';
+import {LoginValidationService} from '../services/login.validation.service';
+import {EmailValidationService} from '../services/email-validation.service';
 
 
 @Component({
@@ -12,7 +13,10 @@ import {ValidationService} from '../services/validation.service';
 export class SignUpFormComponent {
   form;
 
-  constructor(fb: FormBuilder, private validationService: ValidationService) {
+  constructor(fb: FormBuilder,
+              private loginValidationService: LoginValidationService,
+              private emailValidationService: EmailValidationService) {
+
     this.form = fb.group({
       login: ['',
         [Validators.required,
@@ -33,7 +37,8 @@ export class SignUpFormComponent {
         MyValidators.onlyLetters]
       ],
       email: ['',
-        [MyValidators.myEmail]
+        [MyValidators.myEmail],
+        [this.emailOccupied.bind(this)]
       ],
       passwd: ['', [MyValidators.myPassword]],
       confirm_passwd: ['', [Validators.required]],
@@ -42,13 +47,22 @@ export class SignUpFormComponent {
 
   loginOccupied(control: AbstractControl) : Promise<ValidationErrors | null> {
     return new Promise(((resolve, reject) => {
-      this.validationService.readOne(control.value)
+      this.loginValidationService.readOne(control.value)
         .subscribe(response => {
-          console.log(response);
           if (response['user_exists'] === true) {
-            console.log('bp_11');
             resolve({loginOccupied: true});
           }
+          resolve(null);
+        });
+    }));
+  }
+
+  emailOccupied(control: AbstractControl) : Promise<ValidationErrors | null> {
+    return new Promise(((resolve, reject) => {
+      this.emailValidationService.readOne(control.value)
+        .subscribe(response => {
+          if (response['email_exists'])
+            resolve({emailOccupied: true});
           resolve(null);
         });
     }));
