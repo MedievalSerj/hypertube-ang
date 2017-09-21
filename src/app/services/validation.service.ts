@@ -8,6 +8,6 @@ import {GlobalVariable} from '../global';
 export class ValidationService extends DataService {
 
   constructor(http: Http) {
-    super(GlobalVariable.FLASK_API_URL, http);
+    super(GlobalVariable.FLASK_API_URL + '/user_exists', http);
   }
 }

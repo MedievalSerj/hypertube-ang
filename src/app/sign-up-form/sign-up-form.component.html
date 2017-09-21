@@ -11,6 +11,9 @@
         <div *ngIf="login.errors.cannotContainSpecial">login can consist from letters, numbers, "_" and "-"</div>
         <div *ngIf="login.errors.maxLenthReached">login should be not more than 128 characters long</div>
       </div>
+      <div *ngIf="login.invalid" class="text-warning">
+        <div *ngIf="login.errors.loginOccupied">login occupied</div>
+      </div>
     </div>
     <div class="ma-b-10">
       <input formControlName="first_name" class="width-100" id="first_name" type="text" placeholder="First name">

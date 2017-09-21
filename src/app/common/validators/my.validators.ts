@@ -1,6 +1,7 @@
 
-import {AbstractControl, FormGroup, ValidationErrors} from '@angular/forms';
+import {AbstractControl, ValidationErrors} from '@angular/forms';
 import {ValidationService} from '../../services/validation.service';
+import {Http} from '@angular/http';
 
 export class MyValidators {
 
@@ -49,16 +50,17 @@ export class MyValidators {
     return null;
   }
 
-  static loginExists(control: AbstractControl, service: ValidationService) : Promise<ValidationErrors | null> {
+  static loginExists(control: AbstractControl) : Promise<ValidationErrors | null> {
     return new Promise((resolve, reject) => {
 
       console.log('bp_1');
 
-      service.readOne(control.value)
-      .subscribe(response => {
-        console.log(response);
-        resolve(null);
-      });
+      // service.readOne(control.value)
+      // .subscribe(response => {
+      //   console.log(response);
+      //   resolve(null);
+      // });
+      resolve(null);
     });
   }
 

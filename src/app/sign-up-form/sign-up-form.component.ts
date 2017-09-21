@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {Validators, FormBuilder} from '@angular/forms';
+import {Validators, FormBuilder, AbstractControl, ValidationErrors} from '@angular/forms';
 import {MyValidators} from '../common/validators/my.validators';
+import {ValidationService} from '../services/validation.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import {MyValidators} from '../common/validators/my.validators';
 export class SignUpFormComponent {
   form;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private validationService: ValidationService) {
     this.form = fb.group({
       login: ['',
         [Validators.required,
@@ -19,7 +20,7 @@ export class SignUpFormComponent {
         MyValidators.cannotContainSpecial,
         MyValidators.maxLenthReached],
         [
-          MyValidators.loginExists
+          this.loginOccupied.bind(this)
         ]
       ],
       first_name: ['',
@@ -37,6 +38,20 @@ export class SignUpFormComponent {
       passwd: ['', [MyValidators.myPassword]],
       confirm_passwd: ['', [Validators.required]],
     }, {validator: MyValidators.confirmPassword});
+  }
+
+  loginOccupied(control: AbstractControl) : Promise<ValidationErrors | null> {
+    return new Promise(((resolve, reject) => {
+      this.validationService.readOne(control.value)
+        .subscribe(response => {
+          console.log(response);
+          if (response['user_exists'] === true) {
+            console.log('bp_11');
+            resolve({loginOccupied: true});
+          }
+          resolve(null);
+        });
+    }));
   }
 
   get login() {
@@ -62,5 +77,4 @@ export class SignUpFormComponent {
   get confirm_passwd() {
     return this.form.get('confirm_passwd');
   }
-
 }
