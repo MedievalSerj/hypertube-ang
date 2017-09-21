@@ -21,6 +21,7 @@ import { DataService } from './services/data.service';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditProfileFormComponent } from './edit-profile-form/edit-profile-form.component';
+import {ValidationService} from './services/validation.service';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { EditProfileFormComponent } from './edit-profile-form/edit-profile-form.
   ],
   providers: [
     DataService,
-    PreviewsService
+    PreviewsService,
+    ValidationService
   ],
   bootstrap: [AppComponent]
 })

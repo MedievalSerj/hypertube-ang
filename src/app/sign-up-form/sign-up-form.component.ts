@@ -17,7 +17,11 @@ export class SignUpFormComponent {
         [Validators.required,
         Validators.minLength(3),
         MyValidators.cannotContainSpecial,
-        MyValidators.maxLenthReached]],
+        MyValidators.maxLenthReached],
+        [
+          MyValidators.loginExists
+        ]
+      ],
       first_name: ['',
         [Validators.required,
         Validators.minLength(2),

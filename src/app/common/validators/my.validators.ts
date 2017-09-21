@@ -1,5 +1,6 @@
 
 import {AbstractControl, FormGroup, ValidationErrors} from '@angular/forms';
+import {ValidationService} from '../../services/validation.service';
 
 export class MyValidators {
 
@@ -43,12 +44,22 @@ export class MyValidators {
     let passwd =  control.get('passwd').value;
     let confirm_passwd =  control.get('confirm_passwd').value;
 
-    // console.log(passwd);
-    // console.log(confirm_passwd);
-
     if (passwd !== confirm_passwd)
         return { confirmPassword: true };
     return null;
+  }
+
+  static loginExists(control: AbstractControl, service: ValidationService) : Promise<ValidationErrors | null> {
+    return new Promise((resolve, reject) => {
+
+      console.log('bp_1');
+
+      service.readOne(control.value)
+      .subscribe(response => {
+        console.log(response);
+        resolve(null);
+      });
+    });
   }
 
 }
