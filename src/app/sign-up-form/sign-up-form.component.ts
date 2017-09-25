@@ -57,7 +57,7 @@ export class SignUpFormComponent {
         if (response['exists'] === true) {
           this.form.setErrors({userExists: true});
         } else {
-          this.router.navigate(['/add-photo']);
+          this.router.navigate(['/sign-in']);
         }
       });
   }

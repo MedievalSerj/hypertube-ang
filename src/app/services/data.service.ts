@@ -42,18 +42,6 @@ export class DataService {
       .catch(this.handleError);
   }
 
-  // upload(fileToUpload) {
-  //   let input = new FormData();
-  //   input.append('file', fileToUpload);
-  //   let headers = new Headers();
-  //   headers.append('Content-Type', 'multipart/form-data');
-  //   headers.append('Accept', 'application/json');
-  //   let options = new RequestOptions({ headers: headers });
-  //   return this.http.post(this.url, input, options)
-  //     .map(responce => responce.json())
-  //     .catch(this.handleError);
-  // }
-
   private handleError(error: Response) {
     return Observable.throw(new Error());
   }

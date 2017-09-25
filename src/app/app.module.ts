@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
@@ -24,8 +23,6 @@ import { EditProfileFormComponent } from './edit-profile-form/edit-profile-form.
 import {LoginValidationService} from './services/login.validation.service';
 import {EmailValidationService} from './services/email-validation.service';
 import {UserService} from './services/user.service';
-import {AddPhotoComponent} from './add-photo/add-photo.component';
-import {UploadPhootService} from './services/upload-phoot.service';
 import {ImageUploadModule} from 'angular2-image-upload';
 
 
@@ -47,7 +44,6 @@ import {ImageUploadModule} from 'angular2-image-upload';
     ResetPasswordComponent,
     SignUpFormComponent,
     EditProfileFormComponent,
-    AddPhotoComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +58,6 @@ import {ImageUploadModule} from 'angular2-image-upload';
       { path: 'profile', component: ProfilePageComponent},
       { path: 'sign-in', component: SignInPageComponent},
       { path: 'sign-up', component: SignUpPageComponent},
-      { path: 'add-photo', component: AddPhotoComponent },
       { path: 'reset-password', component: ResetPasswordComponent},
       { path: '**', component: PageNotFoundComponent},
     ])
@@ -73,7 +68,6 @@ import {ImageUploadModule} from 'angular2-image-upload';
     LoginValidationService,
     EmailValidationService,
     UserService,
-    UploadPhootService
   ],
   bootstrap: [AppComponent]
 })
