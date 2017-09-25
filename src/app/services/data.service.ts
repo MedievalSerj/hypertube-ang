@@ -48,8 +48,8 @@ export class DataService {
   //   let headers = new Headers();
   //   headers.append('Content-Type', 'multipart/form-data');
   //   headers.append('Accept', 'application/json');
-  //   // let options = new RequestOptions({ headers: headers });
-  //   return this.http.post(this.url, input, { headers: headers })
+  //   let options = new RequestOptions({ headers: headers });
+  //   return this.http.post(this.url, input, options)
   //     .map(responce => responce.json())
   //     .catch(this.handleError);
   // }

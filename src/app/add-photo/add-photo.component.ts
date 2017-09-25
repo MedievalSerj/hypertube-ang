@@ -15,10 +15,10 @@ export class AddPhotoComponent implements OnInit {
   constructor() {
   }
 
-  // uploadPhoto(fileInput) {
-  //   fileInput.click();
-  // }
-  //
+  uploadPhoto(fileInput) {
+    fileInput.click();
+  }
+
   // @ViewChild('fileInput') fileInput;
   //
   // changeFileStatus() {

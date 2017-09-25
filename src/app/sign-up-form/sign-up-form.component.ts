@@ -14,6 +14,7 @@ import {Router} from '@angular/router';
 })
 export class SignUpFormComponent {
   form;
+  img_url = 'assets/dummy_avatar.png';
 
   constructor(fb: FormBuilder,
               private loginValidationService: LoginValidationService,
@@ -22,6 +23,7 @@ export class SignUpFormComponent {
               private router: Router) {
 
     this.form = fb.group({
+      avatar64: [null],
       login: ['',
         [Validators.required,
         Validators.minLength(3),
@@ -83,36 +85,24 @@ export class SignUpFormComponent {
     }));
   }
 
-  // uploadPhoto(fileInput: any) {
-  //   console.log(fileInput);
-  //   fileInput.click();
-  // }
+  uploadPhoto(fileInput: any) {
+    fileInput.click();
+  }
 
-  // @ViewChild("fileInput") fileInput;
-  //
-  // addFile(): void {
-  //   let fi = this.fileInput.nativeElement;
-  //   if (fi.files && fi.files[0]) {
-  //     let fileToUpload = fi.files[0];
-  //     let reader = new FileReader();
-  //     let encoded_file = reader.readAsDataURL(fileToUpload);
-  //     console.log(encoded_file);
-  //     // console.log(fileToUpload);
-  //     // this.avatar.value = fileToUpload;
-  //   }
-  // }
+  @ViewChild("fileInput") fileInput;
 
-  // fileInputChanged(event) {
-  //   let file = event.srcElement.files[0];
-  //   let filereader = new FileReader();
-  //   filereader.readAsDataURL(file);
-  //   filereader.onload = function() {
-  //     console.log();
-  //   }
-  // }
+  fileInputChanged(event) {
+    let file = event.srcElement.files[0];
+    let filereader = new FileReader();
+    filereader.readAsDataURL(file);
+    filereader.onloadend = (e) => {
+      this.form.patchValue({'avatar64': filereader.result});
+      this.img_url = filereader.result;
+    }
+  }
 
-  get avatar() {
-    return this.form.get('avatar')
+  get avatar64() {
+    return this.form.get('avatar64');
   }
 
   get login() {

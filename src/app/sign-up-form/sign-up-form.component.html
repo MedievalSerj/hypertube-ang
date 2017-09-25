@@ -1,14 +1,13 @@
-<!--<div class="avatar-img ma-auto ma-b-10"-->
-     <!--style="background: url('assets/faces/walter-white.jpg') no-repeat center">-->
-<!--</div>-->
+<div id="avatar"
+     class="avatar-img ma-auto ma-b-10"
+     [ngStyle]="{'background-image': 'url(' + img_url + ')'}">
+</div>
 
-<!--<div class="ma-b-10 text-center">-->
-  <!--<button (click)="uploadPhoto(fileInput)" class="pure-button pure-button-primary">UPLOAD PHOTO</button>-->
-<!--</div>-->
+<div class="ma-b-10 text-center">
+  <button (click)="uploadPhoto(fileInput)" class="pure-button pure-button-primary">UPLOAD PHOTO</button>
+</div>
 
-<!--<div class="ma-b-10 text-center">-->
-  <!--<button class="pure-button pure-button-primary">UPLOAD PHOTO</button>-->
-<!--</div>-->
+<input hidden (change)="fileInputChanged($event)" #fileInput type="file" accept="image/jpeg,image/png,image/gif">
 
 <form #f="ngForm" [formGroup]="form" (ngSubmit)="register()" class="pure-form">
   <fieldset>
@@ -16,7 +15,6 @@
       LOGIN OR EMAIL EXISTS
     </div>
 
-    <!--<input #fileInput type="file" formControlName="avatar">-->
 
     <div class="ma-b-10">
       <input formControlName="login" class="width-100" id="login" type="text" placeholder="Login">
