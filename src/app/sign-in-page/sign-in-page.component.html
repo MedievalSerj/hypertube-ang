@@ -1,4 +1,9 @@
 <div class="card-preview-container log_in_width ma-auto ma-t-30">
+
+  <div *ngIf="registered" class="card ma-b-60">
+    <p class="text-success">Your account has been created. Please verify your email before signing in</p>
+  </div>
+
   <div class="card ma-b-60">
     <h4 class="text-center">SIGN IN</h4>
     <div class="text-left ma-t-10">
@@ -19,7 +24,6 @@
           <button class="width-100 pure-button pure-button-primary">CONTINUE WITH 42</button>
         </fieldset>
       </form>
-
     </div>
   </div>
 </div>

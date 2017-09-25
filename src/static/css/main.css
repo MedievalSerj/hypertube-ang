@@ -284,6 +284,10 @@ body {
   color: #e77e85;
 }
 
+.text-success {
+  color: #5CB85C;
+}
+
 /*DISPLAY-OPTIONS*/
 
 .display-inline-block {

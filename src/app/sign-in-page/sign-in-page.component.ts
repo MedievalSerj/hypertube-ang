@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInPageComponent implements OnInit {
 
-  constructor() { }
+  registered = false;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.registered = ('true' === this.route.snapshot.queryParamMap.get('registered'));
   }
 
 }
