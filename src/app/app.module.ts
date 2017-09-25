@@ -23,6 +23,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditProfileFormComponent } from './edit-profile-form/edit-profile-form.component';
 import {LoginValidationService} from './services/login.validation.service';
 import {EmailValidationService} from './services/email-validation.service';
+import {UserService} from './services/user.service';
+import {AddPhotoComponent} from './add-photo/add-photo.component';
+import {UploadPhootService} from './services/upload-phoot.service';
+import {ImageUploadModule} from 'angular2-image-upload';
+
 
 
 @NgModule({
@@ -41,13 +46,15 @@ import {EmailValidationService} from './services/email-validation.service';
     SignUpPageComponent,
     ResetPasswordComponent,
     SignUpFormComponent,
-    EditProfileFormComponent
+    EditProfileFormComponent,
+    AddPhotoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    ImageUploadModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: GalleryComponent },
       { path: 'watch/:title/:id', component: WatchPageComponent},
@@ -55,6 +62,7 @@ import {EmailValidationService} from './services/email-validation.service';
       { path: 'profile', component: ProfilePageComponent},
       { path: 'sign-in', component: SignInPageComponent},
       { path: 'sign-up', component: SignUpPageComponent},
+      { path: 'add-photo', component: AddPhotoComponent },
       { path: 'reset-password', component: ResetPasswordComponent},
       { path: '**', component: PageNotFoundComponent},
     ])
@@ -63,7 +71,9 @@ import {EmailValidationService} from './services/email-validation.service';
     DataService,
     PreviewsService,
     LoginValidationService,
-    EmailValidationService
+    EmailValidationService,
+    UserService,
+    UploadPhootService
   ],
   bootstrap: [AppComponent]
 })

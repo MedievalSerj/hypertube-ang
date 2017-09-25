@@ -1,5 +1,23 @@
-<form [formGroup]="form" class="pure-form">
+<!--<div class="avatar-img ma-auto ma-b-10"-->
+     <!--style="background: url('assets/faces/walter-white.jpg') no-repeat center">-->
+<!--</div>-->
+
+<!--<div class="ma-b-10 text-center">-->
+  <!--<button (click)="uploadPhoto(fileInput)" class="pure-button pure-button-primary">UPLOAD PHOTO</button>-->
+<!--</div>-->
+
+<!--<div class="ma-b-10 text-center">-->
+  <!--<button class="pure-button pure-button-primary">UPLOAD PHOTO</button>-->
+<!--</div>-->
+
+<form #f="ngForm" [formGroup]="form" (ngSubmit)="register()" class="pure-form">
   <fieldset>
+    <div *ngIf="form.errors && form.errors.userExists" class="text-warning text-center ma-b-10">
+      LOGIN OR EMAIL EXISTS
+    </div>
+
+    <!--<input #fileInput type="file" formControlName="avatar">-->
+
     <div class="ma-b-10">
       <input formControlName="login" class="width-100" id="login" type="text" placeholder="Login">
       <div *ngIf="login.touched &&
@@ -42,21 +60,24 @@
       </div>
       <div *ngIf="email.invalid && email.errors.emailOccupied" class="text-warning">email occupied</div>
     </div>
-
     <div class="ma-b-10 pure-control-group">
       <input formControlName="passwd" class="width-100" id="passwd" type="password" placeholder="Password">
       <div *ngIf="passwd.touched && passwd.invalid" class="text-warning">
         <div *ngIf="passwd.errors.myPassword">should be at least 8 characters long, contain numbers and letters</div>
       </div>
     </div>
-    <div class="ma-b-10 pure-control-group">
+    <div class="ma-b-20 pure-control-group">
       <input formControlName="confirm_passwd" class="width-100" id="confirm_passwd" type="password"
              placeholder="Confirm password">
       <div *ngIf="confirm_passwd.touched && confirm_passwd.invalid" class="text-warning">
         <div *ngIf="confirm_passwd.errors.required">this field is required</div>
       </div>
-        <div *ngIf="confirm_passwd.touched && passwd.valid && form.errors && form.errors.confirmPassword" class="text-warning">passwords do not match</div>
+      <div *ngIf="confirm_passwd.touched && passwd.valid && form.errors && form.errors.confirmPassword"
+           class="text-warning">passwords do not match
+      </div>
     </div>
-    <button class="ma-b-10 width-100 pure-button pure-button-primary">SIGN UP</button>
+    <div class="text-center">
+      <button id="btn-submit" [disabled]="!f.valid" class="ma-b-10 pure-button pure-button-primary">SIGN UP</button>
+    </div>
   </fieldset>
 </form>

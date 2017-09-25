@@ -1,7 +1,5 @@
 
 import {AbstractControl, ValidationErrors} from '@angular/forms';
-import {LoginValidationService} from '../../services/login.validation.service';
-import {Http} from '@angular/http';
 
 export class MyValidators {
 
@@ -52,18 +50,5 @@ export class MyValidators {
     return null;
   }
 
-  // loginOccupied(control: AbstractControl) : Promise<ValidationErrors | null> {
-  //   return new Promise(((resolve, reject) => {
-  //     this.validationService.readOne(control.value)
-  //       .subscribe(response => {
-  //         console.log(response);
-  //         if (response['user_exists'] === true) {
-  //           console.log('bp_11');
-  //           resolve({loginOccupied: true});
-  //         }
-  //         resolve(null);
-  //       });
-  //   }));
-  // }
 
 }

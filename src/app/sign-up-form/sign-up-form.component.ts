@@ -1,8 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, ViewChild} from '@angular/core';
 import {Validators, FormBuilder, AbstractControl, ValidationErrors} from '@angular/forms';
 import {MyValidators} from '../common/validators/my.validators';
 import {LoginValidationService} from '../services/login.validation.service';
 import {EmailValidationService} from '../services/email-validation.service';
+import {UserService} from '../services/user.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,7 +17,9 @@ export class SignUpFormComponent {
 
   constructor(fb: FormBuilder,
               private loginValidationService: LoginValidationService,
-              private emailValidationService: EmailValidationService) {
+              private emailValidationService: EmailValidationService,
+              private userService: UserService,
+              private router: Router) {
 
     this.form = fb.group({
       login: ['',
@@ -45,6 +49,17 @@ export class SignUpFormComponent {
     }, {validator: MyValidators.confirmPassword});
   }
 
+  register() {
+    this.userService.create(this.form.value)
+      .subscribe(response => {
+        if (response['exists'] === true) {
+          this.form.setErrors({userExists: true});
+        } else {
+          this.router.navigate(['/add-photo']);
+        }
+      });
+  }
+
   loginOccupied(control: AbstractControl) : Promise<ValidationErrors | null> {
     return new Promise(((resolve, reject) => {
       this.loginValidationService.readOne(control.value)
@@ -66,6 +81,38 @@ export class SignUpFormComponent {
           resolve(null);
         });
     }));
+  }
+
+  // uploadPhoto(fileInput: any) {
+  //   console.log(fileInput);
+  //   fileInput.click();
+  // }
+
+  // @ViewChild("fileInput") fileInput;
+  //
+  // addFile(): void {
+  //   let fi = this.fileInput.nativeElement;
+  //   if (fi.files && fi.files[0]) {
+  //     let fileToUpload = fi.files[0];
+  //     let reader = new FileReader();
+  //     let encoded_file = reader.readAsDataURL(fileToUpload);
+  //     console.log(encoded_file);
+  //     // console.log(fileToUpload);
+  //     // this.avatar.value = fileToUpload;
+  //   }
+  // }
+
+  // fileInputChanged(event) {
+  //   let file = event.srcElement.files[0];
+  //   let filereader = new FileReader();
+  //   filereader.readAsDataURL(file);
+  //   filereader.onload = function() {
+  //     console.log();
+  //   }
+  // }
+
+  get avatar() {
+    return this.form.get('avatar')
   }
 
   get login() {
