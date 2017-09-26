@@ -24,6 +24,7 @@ import {LoginValidationService} from './services/login.validation.service';
 import {EmailValidationService} from './services/email-validation.service';
 import {UserService} from './services/user.service';
 import {ImageUploadModule} from 'angular2-image-upload';
+import {EmailConfirmService} from './services/email-confirm.service';
 
 
 
@@ -68,6 +69,7 @@ import {ImageUploadModule} from 'angular2-image-upload';
     LoginValidationService,
     EmailValidationService,
     UserService,
+    EmailConfirmService
   ],
   bootstrap: [AppComponent]
 })
