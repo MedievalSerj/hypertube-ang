@@ -24,7 +24,6 @@ export class DataService {
   }
 
   create(resource) {
-    // let headers = new Headers ({ 'Content-Type': 'application/x-www-form-urlencoded' });
     return this.http.post(this.url, resource)
       .map(response => response.json())
       .catch(this.handleError);

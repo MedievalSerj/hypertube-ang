@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -25,6 +25,9 @@ import {EmailValidationService} from './services/email-validation.service';
 import {UserService} from './services/user.service';
 import {ImageUploadModule} from 'angular2-image-upload';
 import {EmailConfirmService} from './services/email-confirm.service';
+import {AuthService} from './services/auth.service';
+import {AppErrorHandler} from './app-error-handler';
+import {AuthGuard} from './services/auth-guard.service';
 
 
 
@@ -54,9 +57,9 @@ import {EmailConfirmService} from './services/email-confirm.service';
     ImageUploadModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: GalleryComponent },
-      { path: 'watch/:title/:id', component: WatchPageComponent},
-      { path: 'my-profile', component: MyProfilePageComponent},
-      { path: 'profile', component: ProfilePageComponent},
+      { path: 'watch/:title/:id', component: WatchPageComponent, canActivate: [AuthGuard]},
+      { path: 'my-profile', component: MyProfilePageComponent, canActivate: [AuthGuard]},
+      { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
       { path: 'sign-in', component: SignInPageComponent},
       { path: 'sign-up', component: SignUpPageComponent},
       { path: 'reset-password', component: ResetPasswordComponent},
@@ -69,7 +72,10 @@ import {EmailConfirmService} from './services/email-confirm.service';
     LoginValidationService,
     EmailValidationService,
     UserService,
-    EmailConfirmService
+    EmailConfirmService,
+    AuthService,
+    AuthGuard,
+    { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

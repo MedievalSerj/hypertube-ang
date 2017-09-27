@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {EmailConfirmService} from '../services/email-confirm.service';
+import {NgModel} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -12,11 +14,17 @@ export class SignInPageComponent implements OnInit {
   registered = false;
   confirmed = false;
   confirmed_api = false;
+  accessDenied = false;
   token: string;
   login: string;
 
+  invalidLogin = false;
+
   constructor(private route: ActivatedRoute,
-              private emailConfirmService: EmailConfirmService) { }
+              private emailConfirmService: EmailConfirmService,
+              private authService: AuthService,
+              private router: Router) {
+  }
 
   ngOnInit() {
     let queryParams = this.route.snapshot.queryParamMap;
@@ -24,6 +32,7 @@ export class SignInPageComponent implements OnInit {
     this.confirmed = ('true' === queryParams.get('confirmed'));
     this.token = queryParams.get('token');
     this.login = queryParams.get('login');
+    this.accessDenied = ('true' === queryParams.get('denied'));
     if (this.confirmed) {
       this.emailConfirmService.readOne(this.login + '/' + this.token)
         .subscribe(response => {
@@ -36,4 +45,20 @@ export class SignInPageComponent implements OnInit {
     }
   }
 
+  signIn(credentials) {
+    this.authService.login(credentials).subscribe(
+      response => {
+        localStorage.setItem('token', response['access_token']);
+        let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigate([returnUrl || '/']);
+      },
+      error => {
+        if (error.status === 401) {
+          this.invalidLogin = true;
+          console.log('catched 401 error');
+        } else {
+          throw new error;
+        }
+      });
+  }
 }
