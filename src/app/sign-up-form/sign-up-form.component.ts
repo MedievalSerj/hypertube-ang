@@ -26,21 +26,21 @@ export class SignUpFormComponent {
       avatar64: [null],
       login: ['',
         [Validators.required,
-        Validators.minLength(3),
-        MyValidators.cannotContainSpecial,
-        MyValidators.maxLenthReached],
+          Validators.minLength(3),
+          MyValidators.cannotContainSpecial,
+          MyValidators.maxLenthReached],
         [
           this.loginOccupied.bind(this)
         ]
       ],
       first_name: ['',
         [Validators.required,
-        Validators.minLength(2),
-        MyValidators.onlyLetters]],
+          Validators.minLength(2),
+          MyValidators.onlyLetters]],
       last_name: ['',
         [Validators.required,
-        Validators.minLength(2),
-        MyValidators.onlyLetters]
+          Validators.minLength(2),
+          MyValidators.onlyLetters]
       ],
       email: ['',
         [MyValidators.myEmail],
@@ -54,17 +54,21 @@ export class SignUpFormComponent {
   register() {
     this.userService.create(this.form.value)
       .subscribe(response => {
-        if (response['exists'] === true) {
+        this.router.navigate(['/sign-in'], {
+          queryParams: {registered: true}
+        });
+      },
+      error => {
+        if (error.status === 409) {
           this.form.setErrors({userExists: true});
         } else {
-          this.router.navigate(['/sign-in'], {
-            queryParams: { registered: true }
-          });
+          throw new error;
         }
       });
   }
 
-  loginOccupied(control: AbstractControl) : Promise<ValidationErrors | null> {
+
+  loginOccupied(control: AbstractControl): Promise<ValidationErrors | null> {
     return new Promise(((resolve, reject) => {
       this.loginValidationService.readOne(control.value)
         .subscribe(response => {
@@ -76,7 +80,7 @@ export class SignUpFormComponent {
     }));
   }
 
-  emailOccupied(control: AbstractControl) : Promise<ValidationErrors | null> {
+  emailOccupied(control: AbstractControl): Promise<ValidationErrors | null> {
     return new Promise(((resolve, reject) => {
       this.emailValidationService.readOne(control.value)
         .subscribe(response => {
@@ -91,7 +95,7 @@ export class SignUpFormComponent {
     fileInput.click();
   }
 
-  @ViewChild("fileInput") fileInput;
+  @ViewChild('fileInput') fileInput;
 
   fileInputChanged(event) {
     let file = event.srcElement.files[0];
@@ -100,7 +104,7 @@ export class SignUpFormComponent {
     filereader.onloadend = (e) => {
       this.form.patchValue({'avatar64': filereader.result});
       this.img_url = filereader.result;
-    }
+    };
   }
 
   get avatar64() {

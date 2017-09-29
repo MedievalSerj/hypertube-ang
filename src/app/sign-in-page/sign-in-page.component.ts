@@ -48,14 +48,14 @@ export class SignInPageComponent implements OnInit {
   signIn(credentials) {
     this.authService.login(credentials).subscribe(
       response => {
-        localStorage.setItem('token', response['access_token']);
+        localStorage.setItem('token', response['token']);
         let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
         this.router.navigate([returnUrl || '/']);
       },
       error => {
-        if (error.status === 401) {
+        if (error.status === 400) {
           this.invalidLogin = true;
-          console.log('catched 401 error');
+          // console.log('catched 401 error');
         } else {
           throw new error;
         }
