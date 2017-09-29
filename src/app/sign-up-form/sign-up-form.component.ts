@@ -44,7 +44,7 @@ export class SignUpFormComponent {
       ],
       email: ['',
         [MyValidators.myEmail],
-        [this.emailOccupied.bind(this)]
+        // [this.emailOccupied.bind(this)]
       ],
       passwd: ['', [MyValidators.myPassword]],
       confirm_passwd: ['', [Validators.required]],
