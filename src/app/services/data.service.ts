@@ -44,6 +44,4 @@ export class DataService {
   private handleError(error: Response) {
     return Observable.throw(new Error());
   }
-
-
 }

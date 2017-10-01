@@ -3,9 +3,15 @@
   <div class="pure-u-1 pure-u-sm-1-3 pa-10">
     <div id="profile_avatar" class="avatar-img-big ma-auto ma-b-10"
          [style.background-image]="'url(' + img_url + ')'">
+      <i [class.active_cross]="mouseOvered"
+         (mouseover)="mouseOvered=true"
+         (mouseout)="mouseOvered=false"
+         (click)="delPhoto()"
+         [hidden]="!display_cross" id="cross" class="fa fa-times fa-lg" aria-hidden="true"></i>
     </div>
-    <!--style="background: url('assets/faces/walter-white.jpg')"-->
-    <button id="btn-photo" class="pure-button pure-button-primary">New photo</button>
+
+    <input hidden (change)="fileInputChanged($event)" #fileInput type="file" accept="image/jpeg,image/png,image/gif">
+    <button (click)="uploadPhoto(fileInput)" id="btn-photo" class="pure-button pure-button-primary">New photo</button>
   </div>
 
   <div class="text-left pure-u-1 pure-u-sm-2-3 ma-t-10 pa-10">
@@ -23,32 +29,65 @@
             <div *ngIf="login.errors.cannotContainSpecial">login can consist from letters, numbers, "_" and "-"</div>
             <div *ngIf="login.errors.maxLenthReached">login should be not more than 128 characters long</div>
           </div>
+          <div *ngIf="login.invalid" class="text-warning">
+            <div *ngIf="login.errors.loginOccupied">login occupied</div>
+          </div>
         </div>
         <div class="ma-b-10 pure-control-group">
           <label class="ma-b-5" for="first_name">Firstname:&nbsp;</label>
           <input formControlName="first_name" class="width-100" id="first_name" type="text">
+          <div *ngIf="first_name.touched && first_name.invalid" class="text-warning">
+            <div *ngIf="first_name.errors.required">this field is required</div>
+            <div *ngIf="first_name.errors.minlength">should be at least {{ first_name.errors.minlength.requiredLength }}
+              character long
+            </div>
+            <div *ngIf="first_name.errors.onlyLetters">can contain only letters</div>
+          </div>
         </div>
         <div class="ma-b-10 pure-control-group">
           <label class="ma-b-5" for="last_name">Last name:&nbsp;</label>
           <input formControlName="last_name" class="width-100" id="last_name" type="text">
+          <div *ngIf="last_name.touched && last_name.invalid" class="text-warning">
+            <div *ngIf="last_name.errors.required">this field is required</div>
+            <div *ngIf="last_name.errors.minlength">should be at least {{ last_name.errors.minlength.requiredLength }}
+              character long
+            </div>
+            <div *ngIf="last_name.errors.onlyLetters">can contain only letters</div>
+          </div>
         </div>
         <div class="ma-b-10 pure-control-group">
           <label class="ma-b-5" for="email">email:&nbsp;</label>
           <input formControlName="email" class="width-100" id="email" type="text">
+          <div *ngIf="email.touched && email.invalid" class="text-warning">
+            <div *ngIf="email.errors.myEmail">not a valid email</div>
+          </div>
+          <div *ngIf="email.invalid && email.errors.emailOccupied" class="text-warning">email occupied</div>
         </div>
         <div class="ma-b-10 pure-control-group">
-          <label class="ma-b-5" for="passw">Password:&nbsp;</label>
-          <input class="width-100" id="passw" type="password" value="">
+          <label class="ma-b-5" for="passwd">Password:&nbsp;</label>
+          <input formControlName="passwd" class="width-100" id="passwd" type="password" value="">
+          <div *ngIf="passwd.touched && passwd.invalid" class="text-warning">
+            <div *ngIf="passwd.errors.myPassword">should be at least 8 characters long, contain numbers and letters
+            </div>
+          </div>
         </div>
         <div class="ma-b-10 pure-control-group">
           <label class="ma-b-5" for="confirm_passw">Confirm password:&nbsp;</label>
-          <input class="width-100" id="confirm_passw" type="password" value="">
+          <input formControlName="confirm_passwd" class="width-100" id="confirm_passw" type="password" value="">
+          <div *ngIf="confirm_passwd.touched && confirm_passwd.invalid" class="text-warning">
+            <div *ngIf="confirm_passwd.errors.required">this field is required</div>
+          </div>
+          <div *ngIf="confirm_passwd.touched && passwd.valid && form.errors && form.errors.confirmPassword"
+               class="text-warning">passwords do not match
+          </div>
         </div>
         <div class="text-center">
-          <button class="width-100 pure-button pure-button-primary">UPDATE</button>
+          <button class="btn-width pure-button pure-button-primary">UPDATE</button>
         </div>
-
       </fieldset>
     </form>
+    <div class="text-center">
+      <button (click)="deleteAccount()" class="btn-width pure-button pure-button-primary">DELETE ACCOUNT</button>
+    </div>
   </div>
 </div>

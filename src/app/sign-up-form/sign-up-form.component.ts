@@ -29,9 +29,7 @@ export class SignUpFormComponent {
           Validators.minLength(3),
           MyValidators.cannotContainSpecial,
           MyValidators.maxLenthReached],
-        [
-          this.loginOccupied.bind(this)
-        ]
+        [this.loginOccupied.bind(this)]
       ],
       first_name: ['',
         [Validators.required,
@@ -52,6 +50,7 @@ export class SignUpFormComponent {
   }
 
   register() {
+    // console.log(this.form.value);
     this.userService.create(this.form.value)
       .subscribe(response => {
         this.router.navigate(['/sign-in'], {
