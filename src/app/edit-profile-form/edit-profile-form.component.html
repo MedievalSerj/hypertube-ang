@@ -9,7 +9,7 @@
   </div>
 
   <div class="text-left pure-u-1 pure-u-sm-2-3 ma-t-10 pa-10">
-    <form [formGroup]="form" class="pure-form">
+    <form [formGroup]="form" (ngSubmit)="updateProfile()" class="pure-form">
       <fieldset>
         <div class="ma-b-10">
           <label class="ma-b-5" for="login">Login:&nbsp;</label>

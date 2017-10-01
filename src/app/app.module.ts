@@ -47,7 +47,7 @@ import {AuthGuard} from './services/auth-guard.service';
     SignUpPageComponent,
     ResetPasswordComponent,
     SignUpFormComponent,
-    EditProfileFormComponent,
+    EditProfileFormComponent
   ],
   imports: [
     BrowserModule,

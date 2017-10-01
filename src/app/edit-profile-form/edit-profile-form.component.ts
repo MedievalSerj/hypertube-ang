@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms'
 import { MyValidators } from '../common/validators/my.validators'
 import {AuthService} from '../services/auth.service';
 import {GlobalVariable} from '../global';
+import {UserService} from '../services/user.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class EditProfileFormComponent implements OnInit {
 
 
   constructor(fb: FormBuilder,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private userService: UserService) {
     this.current_user =  this.authService.currentUser;
 
     if (this.current_user.avatar_url)
@@ -47,12 +49,20 @@ export class EditProfileFormComponent implements OnInit {
     }, {validator: MyValidators.confirmPassword});
   }
 
+  updateProfile() {
+    let currentUser = this.authService.currentUser;
+
+    this.userService.update(currentUser)
+      .subscribe(response => {
+        console.log(response);
+      });
+  }
+
   get login() {
     return this.form.get('login');
   }
 
   ngOnInit() {
-
 
   }
 
