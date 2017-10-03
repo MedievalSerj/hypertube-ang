@@ -28,6 +28,11 @@ import {EmailConfirmService} from './services/email-confirm.service';
 import {AuthService} from './services/auth.service';
 import {AppErrorHandler} from './app-error-handler';
 import {AuthGuard} from './services/auth-guard.service';
+import {VgCoreModule} from 'videogular2/core';
+import {VgControlsModule} from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
+
 
 
 
@@ -54,6 +59,10 @@ import {AuthGuard} from './services/auth-guard.service';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
     ImageUploadModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: GalleryComponent },
