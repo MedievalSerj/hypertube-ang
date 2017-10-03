@@ -1,141 +1,183 @@
 <div class="pure-g watch_width ma-auto">
-        <div class="card-preview-container pure-u-1 pure-u-sm-1 pure-u-md-3-4">
-            <div class="card">
+  <div class="card-preview-container pure-u-1 pure-u-sm-1 pure-u-md-3-4">
 
-            </div>
-        </div>
-        <div class="card-preview-container pure-u-1  pure-u-sm-1 pure-u-md-1-4">
-            <div class="card">
-                <span class="filter-btn">ABOUT <i class="fa fa-caret-down fa-lg"></i></span>
-                <h4 class="ma-t-10 ma-b-10">Матрица времени</h4>
-                <div class="movie-img pa-r-5 pa-l-5 ma-b-5"
-                     style="background: url('assets/img/pic_11.jpg') no-repeat center;">
-                </div>
-                <p class="text-left ma-0">
-                    Year: 2017<br>
-                    Genre: adventure<br>
-                    Rating: 100500<br>
-                    Producer: Someone<br>
-                    Director: Someone Else<br>
-                    Actors: Robin Wiliams, Robin Good, Robin Bad
-                </p>
-            </div>
-        </div>
+    <!--<vg-player>-->
+      <!--<video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>-->
+        <!--<source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">-->
+      <!--</video>-->
+    <!--</vg-player>-->
+
+    <vg-player>
+      <vg-overlay-play></vg-overlay-play>
+      <vg-buffering></vg-buffering>
+
+      <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+      </vg-scrub-bar>
+
+      <vg-controls>
+        <vg-play-pause></vg-play-pause>
+        <vg-playback-button></vg-playback-button>
+
+        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+        <vg-track-selector></vg-track-selector>
+        <vg-mute></vg-mute>
+        <vg-volume></vg-volume>
+
+        <vg-fullscreen></vg-fullscreen>
+      </vg-controls>
+
+      <video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin>
+        <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+        <source src="http://static.videogular.com/assets/videos/videogular.ogg" type="video/ogg">
+        <source src="http://static.videogular.com/assets/videos/videogular.webm" type="video/webm">
+
+        <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt" srclang="en" default>
+        <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt" srclang="es">
+      </video>
+    </vg-player>
+
+
+  </div>
+  <div class="card-preview-container pure-u-1  pure-u-sm-1 pure-u-md-1-4">
+    <div class="card">
+      <span class="filter-btn">ABOUT <i class="fa fa-caret-down fa-lg"></i></span>
+      <h4 class="ma-t-10 ma-b-10">Матрица времени</h4>
+      <div class="movie-img pa-r-5 pa-l-5 ma-b-5"
+           style="background: url('assets/img/pic_11.jpg') no-repeat center;">
+      </div>
+      <p class="text-left ma-0">
+        Year: 2017<br>
+        Genre: adventure<br>
+        Rating: 100500<br>
+        Producer: Someone<br>
+        Director: Someone Else<br>
+        Actors: Robin Wiliams, Robin Good, Robin Bad
+      </p>
     </div>
-    <div class="card-preview-container watch_width ma-auto">
-        <div class="card">
-            <span class="filter-btn">SUMMARY <i class="fa fa-caret-down fa-lg"></i></span>
-        </div>
+  </div>
+</div>
+<div class="card-preview-container watch_width ma-auto">
+  <div class="card">
+    <span class="filter-btn">SUMMARY <i class="fa fa-caret-down fa-lg"></i></span>
+  </div>
+</div>
+<div class="card-preview-container watch_width ma-auto ma-b-60">
+  <div class="card comment-box">
+    <div class="ma-t-15 ma-b-15">
+      <span class="filter-btn">COMMENTS <i class="fa fa-caret-down fa-lg"></i></span>
     </div>
-    <div class="card-preview-container watch_width ma-auto ma-b-60">
-        <div class="card comment-box">
-            <div class="ma-t-15 ma-b-15">
-                <span class="filter-btn">COMMENTS <i class="fa fa-caret-down fa-lg"></i></span>
-            </div>
 
 
-            <div class="hypertube-comment pure-g">
-                <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
-                    <div class="display-inline-block avatar-img"
-                         style="background: url('assets/faces/walter-white.jpg') no-repeat center">
-                    </div>
-                </div>
-                <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
-
-                    <div class="ma-b-5">
-                        Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57
-                    </div>
-                    <div>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="hypertube-comment pure-g">
-                <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
-                    <div class="display-inline-block avatar-img"
-                         style="background: url('assets/faces/walter-white.jpg') no-repeat center">
-                    </div>
-                </div>
-                <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
-
-                    <div class="ma-b-5">
-                        Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57
-                    </div>
-                    <div>
-                        Lorem ipsum dolor sit amet,
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="hypertube-comment pure-g">
-                <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
-                    <div class="display-inline-block avatar-img"
-                         style="background: url('assets/faces/walter-white.jpg') no-repeat center">
-                    </div>
-                </div>
-                <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
-
-                    <div class="ma-b-5">
-                        Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57
-                    </div>
-                    <div>
-                        Lorem
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="hypertube-comment pure-g">
-                <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
-                    <div class="display-inline-block avatar-img"
-                         style="background: url('assets/faces/walter-white.jpg') no-repeat center">
-                    </div>
-                </div>
-                <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
-
-                    <div class="ma-b-5">
-                        Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57
-                    </div>
-                    <div>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="hypertube-comment pure-g">
-                <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
-                    <div class="display-inline-block avatar-img"
-                         style="background: url('assets/faces/walter-white.jpg') no-repeat center">
-                    </div>
-                </div>
-                <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
-
-                    <div class="ma-b-5">
-                        Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57
-                    </div>
-                    <div>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
-                </div>
-            </div>
-
-
+    <div class="hypertube-comment pure-g">
+      <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
+        <div class="display-inline-block avatar-img"
+             style="background: url('assets/faces/walter-white.jpg') no-repeat center">
         </div>
+      </div>
+      <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
+
+        <div class="ma-b-5">
+          Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat
+          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+      </div>
     </div>
+
+
+    <div class="hypertube-comment pure-g">
+      <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
+        <div class="display-inline-block avatar-img"
+             style="background: url('assets/faces/walter-white.jpg') no-repeat center">
+        </div>
+      </div>
+      <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
+
+        <div class="ma-b-5">
+          Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet,
+        </div>
+      </div>
+    </div>
+
+
+    <div class="hypertube-comment pure-g">
+      <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
+        <div class="display-inline-block avatar-img"
+             style="background: url('assets/faces/walter-white.jpg') no-repeat center">
+        </div>
+      </div>
+      <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
+
+        <div class="ma-b-5">
+          Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57
+        </div>
+        <div>
+          Lorem
+        </div>
+      </div>
+    </div>
+
+
+    <div class="hypertube-comment pure-g">
+      <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
+        <div class="display-inline-block avatar-img"
+             style="background: url('assets/faces/walter-white.jpg') no-repeat center">
+        </div>
+      </div>
+      <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
+
+        <div class="ma-b-5">
+          Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+          voluptate
+        </div>
+      </div>
+    </div>
+
+
+    <div class="hypertube-comment pure-g">
+      <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
+        <div class="display-inline-block avatar-img"
+             style="background: url('assets/faces/walter-white.jpg') no-repeat center">
+        </div>
+      </div>
+      <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
+
+        <div class="ma-b-5">
+          Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat
+          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
