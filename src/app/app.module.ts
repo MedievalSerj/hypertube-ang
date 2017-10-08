@@ -66,7 +66,8 @@ import {VgBufferingModule} from 'videogular2/buffering';
     ImageUploadModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: GalleryComponent },
-      { path: 'watch/:title/:id', component: WatchPageComponent, canActivate: [AuthGuard]},
+      // { path: 'watch/:title/:id', component: WatchPageComponent, canActivate: [AuthGuard]},
+      { path: 'watch/:title/:id', component: WatchPageComponent},
       { path: 'my-profile', component: MyProfilePageComponent, canActivate: [AuthGuard]},
       { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
       { path: 'sign-in', component: SignInPageComponent},

@@ -15,6 +15,10 @@ export class GalleryPreviewComponent implements OnInit {
   constructor(private preview_service: PreviewsService) {
   }
 
+  sort(param, order) {
+   console.log('sort by: ' + param);
+   console.log('order is: ' + order);
+  }
 
   ngOnInit() {
     this.preview_service.readAll()

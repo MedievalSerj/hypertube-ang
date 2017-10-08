@@ -1,53 +1,83 @@
 #nav-container {
-    height: 48px;
-    border-radius: 5px;
-    box-shadow: 5px 5px 5px grey;
+  height: 42px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px grey;
 }
 
 .nav-container a {
-    padding: 15px;
-    border-radius: 5px;
+  padding: 15px;
+  border-radius: 5px;
 }
 
 .pure-menu-item > a:visited {
-    background-color: #3c4859;
+  background-color: #3c4859;
 }
 
 .nav-container a:hover {
-    background-color: #6ebdc8;
-    color: #3c4859;
+  background-color: #6ebdc8;
+  color: #3c4859;
 }
 
 .pure-menu-children > li {
-    background-color: #3c4859;
+  background-color: #3c4859;
 }
 
 .pure-menu-selected .pure-menu-link, .pure-menu-selected .pure-menu-link:visited {
   color: #2fa8c7 !important;
 }
 
+.pure-menu-link {
+  padding: 13px !important;
+}
 
 .sub-menu:hover {
-    border-radius: 0;
+  border-radius: 0;
 }
 
 #logo {
-    font-family: logo-font;
-    font-size: 30px;
-    color: #C3CEE2;
-    display: inline-block;
-    padding: 8px;
-    padding-left: 12px;
+  float: left;
+  font-family: logo-font;
+  font-size: 27px;
+  color: #C3CEE2;
+  display: inline-block;
+  padding: 8px;
+  padding-left: 12px;
 }
 
-@media screen and (max-width: 920px) {
-    .menu-lable {
-        display: none;
-    }
+#searchbar_ul {
+
 }
 
-@media screen and (max-width: 531px) {
-    #logo {
-        display: none;
-    }
+.searchbar {
+  max-width: 100%;
+  width: 150px;
+  font-size: 14px;
+  margin-bottom: 0 !important;
+}
+
+.menu-lable {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 800px) {
+  .menu-lable {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #logo {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 359px) {
+  #searchbar_ul {
+    float: right;
+    clear: both;
+  }
+
+  #nav-container {
+    height: 84px;
+  }
 }

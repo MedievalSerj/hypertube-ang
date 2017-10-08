@@ -2,33 +2,34 @@
 
   <div class="pure-menu pure-menu-horizontal" style="position: relative;">
     <div id="logo">hypertube</div>
-    <ul class="pure-menu-list" style="float: right">
-      <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-        <a href="#/" id="menuLink1" class="pure-menu-link color_front_10">EN</a>
-        <ul class="pure-menu-children color_front_10">
-          <li class="pure-menu-item"><a href="#" class="sub-menu pure-menu-link color_front_10">EN</a>
-          </li>
-          <li class="pure-menu-item"><a href="#" class="sub-menu pure-menu-link color_front_10">RU</a>
-          </li>
-        </ul>
+
+    <ul class="pure-menu-list ma-l-10" id="searchbar_ul">
+      <li class="pure-menu-item">
+        <form class="pure-form center">
+          <input class="searchbar pure-input-rounded" type="text" placeholder="search...">
+        </form>
       </li>
       <li class="pure-menu-item" routerLinkActive="pure-menu-selected">
-        <a (click)="authService.currentUser" class="pure-menu-link color_front_10 pointer"><span
-        class="menu-lable">SEARCH</span>
-        <i class="fa fa-search"></i></a>
+        <a (click)="authService.currentUser" class="pure-menu-link color_front_10 pointer">
+          <i class="fa fa-search"></i></a>
       </li>
+    </ul>
+
+    <ul class="pure-menu-list" style="float: right">
       <li class="pure-menu-item" routerLinkActive="pure-menu-selected" [routerLinkActiveOptions]="{ exact: true }"><a
         routerLink="" class="pure-menu-link color_front_10"><span
         class="menu-lable">GALLERY</span>
         <i class="fa fa-film"></i></a>
       </li>
-      <li *ngIf="authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected"><a routerLink="/my-profile"
-                                                                          class="pure-menu-link color_front_10"><span
+      <li *ngIf="authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected"><a
+        routerLink="/my-profile"
+        class="pure-menu-link color_front_10"><span
         class="menu-lable">MY SETTINGS</span>
         <i class="fa fa-cog"></i></a>
       </li>
-      <li *ngIf="!authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected"><a routerLink="/sign-up"
-                                                                          class="pure-menu-link color_front_10"><span
+      <li *ngIf="!authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected"><a
+        routerLink="/sign-up"
+        class="pure-menu-link color_front_10"><span
         class="menu-lable">SIGN-UP</span>
         <i class="fa fa-user-plus"></i></a>
       </li>

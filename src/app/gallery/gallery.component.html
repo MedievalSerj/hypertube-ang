@@ -1,44 +1,40 @@
-<div class="pa-l-5 pa-r-5">
-  <div id="searchbar_container" class="ma-b-20">
-    <form class="pure-form center">
-      <input class="searchbar pure-input-rounded" type="text" placeholder="search...">
-    </form>
-  </div>
+<div class="pa-l-5 pa-r-5 ma-t-0">
+  <div class="card filter-box ma-b-5">
 
-  <button id="btn-search" class="searchbar ma-b-20 pure-button pure-button-primary">Search</button>
-</div>
-
-<div class="pa-l-5 pa-r-5">
-  <div class="card filter-box ma-b-20">
-    <span class="filter-btn">FILTERS <i class="fa fa-caret-down fa-lg"></i></span>
-  </div>
-</div>
-
-<div class="pa-l-5 pa-r-5">
-  <div class="card filter-box ma-b-30">
     <div class="pure-g">
       <div class="pure-u-1-5">
         <div class="text-left"><span>ORDER BY:</span></div>
       </div>
-
       <div class="pure-u-4-5">
         <div class="pure-g">
-          <div class="pure-u-1-2 pure-u-sm-1-4 ma-b-5"><span class="filter-btn">TITLE <i
+          <div class="pure-u-1-2 pure-u-sm-1-4">
+            <span (click)="orderby('title', title_order)" class="filter-btn">TITLE <i
             class="fa fa-caret-down fa-lg"></i></span>
           </div>
-          <div class="pure-u-1-2  pure-u-sm-1-4 ma-b-5"><span class="filter-btn">GENRE <i
+          <div class="pure-u-1-2  pure-u-sm-1-4">
+            <span (click)="orderby('genre', genre_order)" class="filter-btn">GENRE <i
             class="fa fa-caret-down fa-lg"></i></span>
           </div>
-          <div class="pure-u-1-2  pure-u-sm-1-4"><span class="filter-btn">RATING <i
+          <div class="pure-u-1-2  pure-u-sm-1-4">
+            <span (click)="orderby('rating', rating_order)" class="filter-btn">RATING <i
             class="fa fa-caret-down fa-lg"></i></span>
           </div>
-          <div class="pure-u-1-2  pure-u-sm-1-4"><span class="filter-btn">YEAR <i
+          <div class="pure-u-1-2  pure-u-sm-1-4">
+            <span (click)="orderby('year', year_order)" class="filter-btn">YEAR <i
             class="fa fa-caret-down fa-lg"></i></span>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="card filter-box ma-b-10">
+    <div>
+      <span class="filter-btn">FILTERS <i class="fa fa-caret-down fa-lg"></i></span>
+    </div>
+  </div>
+
 </div>
 
-<app-gallery-preview></app-gallery-preview>
+
+<app-gallery-preview #galleryPreview></app-gallery-preview>
