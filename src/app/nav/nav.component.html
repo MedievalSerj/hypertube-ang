@@ -6,11 +6,11 @@
     <ul class="pure-menu-list ma-l-10" id="searchbar_ul">
       <li class="pure-menu-item">
         <form class="pure-form center">
-          <input #searchBox (keyup.enter)="debugFunc(searchBox)" ngModel name="search_input" class="searchbar pure-input-rounded" type="text" placeholder="search...">
+          <input #searchBox (keyup.enter)="search(searchBox)" ngModel name="search_input" class="searchbar pure-input-rounded" type="text" placeholder="search...">
         </form>
       </li>
       <li class="pure-menu-item" routerLinkActive="pure-menu-selected">
-        <a (click)="debugFunc(searchBox)" class="pure-menu-link color_front_10 pointer">
+        <a (click)="search(searchBox)" class="pure-menu-link color_front_10 pointer">
           <i class="fa fa-search"></i></a>
       </li>
     </ul>

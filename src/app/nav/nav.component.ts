@@ -12,7 +12,7 @@ export class NavComponent implements OnInit {
 
   constructor(public authService: AuthService,
               private router: Router,
-              private previewServic: PreviewsService) { }
+              private previewsService: PreviewsService) { }
 
   ngOnInit() {
   }
@@ -22,8 +22,14 @@ export class NavComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  debugFunc(searchBox) {
-    console.log(searchBox.value);
+  search(searchBox) {
+    this.router.navigate(['/'],
+      {queryParams: {searchWord: searchBox.value}});
+    // console.log(searchBox.value);
+    // this.previewsService.readOne(searchBox.value + '/0/3').
+    //   subscribe(response => {
+    //     console.log(response['search_results']);
+    // });
   }
 
 }

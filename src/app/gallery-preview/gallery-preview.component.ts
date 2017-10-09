@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PreviewsService} from '../services/previews.service';
-import {CardPreviewComponent} from '../card-preview/card-preview.component';
 import {isUndefined} from 'util';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -17,16 +17,28 @@ export class GalleryPreviewComponent implements OnInit {
   private per_page = 3;
   public more_results_disabled = false;
 
-  constructor(private preview_service: PreviewsService) {
+  constructor(private preview_service: PreviewsService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.preview_service.readOne('0/' + this.per_page)
+    this.route.queryParamMap.subscribe(params => {
+      this.searchword = params.get('searchWord');
+      console.log('searchWord: ' + this.searchword);
+
+      let uri_prefix: string;
+      if (!this.searchword)
+        uri_prefix = '0/';
+      else
+        uri_prefix = this.searchword + '/0/';
+
+    this.preview_service.readOne(uri_prefix + this.per_page)
       .subscribe(response => {
         this.previews = response['search_results'];
         this.previews.sort(this.comp_title_asc);
         this.previews_backup = this.previews;
       });
+    });
   }
 
   getMore() {
@@ -38,7 +50,7 @@ export class GalleryPreviewComponent implements OnInit {
       this.preview_service.readOne(from + '/' + to)
         .subscribe(response => {
           console.log(response['search_results']);
-          let search_results  = response['search_results'];
+          let search_results = response['search_results'];
           search_results.sort(this.comp_title_asc);
           this.previews = this.previews.concat(search_results);
           this.previews_backup = this.previews.concat(search_results);
