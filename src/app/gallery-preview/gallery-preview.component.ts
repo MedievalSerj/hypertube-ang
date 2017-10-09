@@ -13,17 +13,40 @@ export class GalleryPreviewComponent implements OnInit {
 
   public previews: any[] = [];
   public previews_backup: any[] = [];
+  public searchword = null;
+  private per_page = 3;
+  public more_results_disabled = false;
 
   constructor(private preview_service: PreviewsService) {
   }
 
   ngOnInit() {
-    this.preview_service.readAll()
+    this.preview_service.readOne('0/' + this.per_page)
       .subscribe(response => {
         this.previews = response['search_results'];
         this.previews.sort(this.comp_title_asc);
         this.previews_backup = this.previews;
       });
+  }
+
+  getMore() {
+    if (!this.searchword) {
+      let from = this.previews.length;
+      let to = from + this.per_page;
+      console.log('from: ' + from);
+      console.log('to: ' + to);
+      this.preview_service.readOne(from + '/' + to)
+        .subscribe(response => {
+          console.log(response['search_results']);
+          let search_results  = response['search_results'];
+          search_results.sort(this.comp_title_asc);
+          this.previews = this.previews.concat(search_results);
+          this.previews_backup = this.previews.concat(search_results);
+          if (search_results.length < this.per_page) {
+            this.more_results_disabled = true;
+          }
+        });
+    }
   }
 
   sort(param, order) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
+import {PreviewsService} from '../services/previews.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +11,8 @@ import {Router} from '@angular/router';
 export class NavComponent implements OnInit {
 
   constructor(public authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private previewServic: PreviewsService) { }
 
   ngOnInit() {
   }
@@ -18,6 +20,10 @@ export class NavComponent implements OnInit {
   logOut() {
     this.authService.logout();
     this.router.navigate(['/']);
+  }
+
+  debugFunc(searchBox) {
+    console.log(searchBox.value);
   }
 
 }

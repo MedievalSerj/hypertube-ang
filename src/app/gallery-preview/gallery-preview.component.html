@@ -1,4 +1,4 @@
-<div class="pure-g ma-b-60">
+<div class="pure-g ma-b-20">
 
   <app-card-preview *ngFor="let card of previews"
                     [title]="card.title"
@@ -10,4 +10,7 @@
     class="card-preview-container pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-lg-1-5 pure-u-xl-1-6">
   </app-card-preview>
 
+</div>
+<div class="text-center  ma-b-60">
+  <button [disabled]="more_results_disabled" (click)="getMore()" class="pure-button pure-button-primary">MORE RESULTS</button>
 </div>
