@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EmailConfirmService} from '../services/email-confirm.service';
-import {NgModel} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
+import {GlobalVariable} from '../global';
+
 
 @Component({
   selector: 'app-sign-in-page',
@@ -17,10 +18,8 @@ export class SignInPageComponent implements OnInit {
   accessDenied = false;
   token: string;
   login: string;
-
-  public g_url = 'assets/G_100.png';
-
   invalidLogin = false;
+  private oAuth42_url = 'https://api.intra.42.fr/oauth/authorize';
 
   constructor(private route: ActivatedRoute,
               private emailConfirmService: EmailConfirmService,
@@ -62,5 +61,29 @@ export class SignInPageComponent implements OnInit {
           throw new error;
         }
       });
+  }
+
+  encodeQueryParams(obj: Object): string {
+    let str = '';
+    for (var key in obj) {
+      if (str != "") {
+        str += "&";
+      }
+      str += key + "=" + encodeURIComponent(obj[key]);
+    }
+    return str;
+  }
+
+  oAuth42() {
+    let queryString: string;
+    let queryParams = {
+      client_id: '135caaea196569df717378f2950cfb4833e1a936d8c3c4a5f56f57fbec6935a4',
+      redirect_uri: GlobalVariable.REDIRECT_42_URL,
+      scope: 'public',
+      response_type: 'code'
+    };
+    queryString = this.encodeQueryParams(queryParams);
+    console.log('queryString: ' + queryString);
+    window.location.href = this.oAuth42_url + '?' + queryString;
   }
 }

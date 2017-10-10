@@ -32,12 +32,14 @@ export class GalleryPreviewComponent implements OnInit {
       else
         uri_prefix = this.searchword + '/0/';
 
-    this.preview_service.readOne(uri_prefix + this.per_page)
-      .subscribe(response => {
-        this.previews = response['search_results'];
-        this.previews.sort(this.comp_title_asc);
-        this.previews_backup = this.previews;
-      });
+      console.log('uri_prefix: ' + uri_prefix);
+
+      this.preview_service.readOne(uri_prefix + this.per_page)
+        .subscribe(response => {
+          this.previews = response['search_results'];
+          this.previews.sort(this.comp_title_asc);
+          this.previews_backup = this.previews;
+        });
     });
   }
 
