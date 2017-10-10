@@ -18,6 +18,8 @@ export class SignInPageComponent implements OnInit {
   token: string;
   login: string;
 
+  public g_url = 'assets/G_100.png';
+
   invalidLogin = false;
 
   constructor(private route: ActivatedRoute,
