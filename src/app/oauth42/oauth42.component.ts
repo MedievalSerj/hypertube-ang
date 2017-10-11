@@ -12,6 +12,7 @@ import {Observable} from 'rxjs/Observable';
 export class Oauth42Component implements OnInit {
 
   private code: string;
+  public status = 'wait...';
 
   constructor(private route: ActivatedRoute,
               private oauth42Service: Oauth42Service,
@@ -22,18 +23,22 @@ export class Oauth42Component implements OnInit {
     console.log('code: ' + this.code);
 
 
-    this.http.get('http://127.0.0.1:5000/oauth42/' + this.code)
-      .map(res => res.json()) // ...and calling .json() on the response to return data
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error')) //...errors if
-      .subscribe(response => {
-          console.log(response);
-        }
-      );
-
-
-    // this.oauth42Service.readOne(this.code)
+    // this.http.get('http://127.0.0.1:5000/oauth42/' + this.code)
+    //   .map(res => res.json()) // ...and calling .json() on the response to return data
+    //   .catch((error:any) => Observable.throw(error.json().error || 'Server error')) //...errors if
     //   .subscribe(response => {
-    //     console.log(response);
-    //   });
+    //       console.log(response);
+    //     }
+    //   );
+
+
+    this.oauth42Service.readOne(this.code)
+      .subscribe(response => {
+        console.log(response);
+        if (response['status'] === 'OK') {
+          this.status = 'Authorized)';
+        }
+
+      });
   }
 }
