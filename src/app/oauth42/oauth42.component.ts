@@ -38,7 +38,8 @@ export class Oauth42Component implements OnInit {
         if (response['status'] === 'OK') {
           this.status = 'Authorized)';
         }
-
+      }, error => {
+          this.status = 'Unauthorized(';
       });
   }
 }

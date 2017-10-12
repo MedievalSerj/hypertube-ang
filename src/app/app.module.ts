@@ -90,7 +90,8 @@ import {Oauth42Service} from './services/oauth42.service';
     AuthService,
     AuthGuard,
     Oauth42Service,
-    { provide: ErrorHandler, useClass: AppErrorHandler }
+    // { provide: ErrorHandler, useClass: AppErrorHandler },
+
   ],
   bootstrap: [AppComponent]
 })
