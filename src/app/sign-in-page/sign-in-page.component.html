@@ -36,7 +36,7 @@
       </form>
       <div class="text-center ma-b-5">
         <div class="ma-b-10">OR CONTINUE WITH:</div>
-        <div class="btn-oauth" [style.background]="'url(assets/G_100.png)'"></div>
+        <div (click)="oAuthGoogle()" class="btn-oauth" [style.background]="'url(assets/G_100.png)'"></div>
         <div (click)="oAuth42()" class="btn-oauth"  [style.background]="'url(assets/42_100.png)'"></div>
       </div>
     </div>

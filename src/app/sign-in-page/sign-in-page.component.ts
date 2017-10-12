@@ -20,6 +20,7 @@ export class SignInPageComponent implements OnInit {
   login: string;
   invalidLogin = false;
   private oAuth42_url = 'https://api.intra.42.fr/oauth/authorize';
+  private oAuthGoogle_url = 'https://accounts.google.com/o/oauth2/v2/auth';
 
   constructor(private route: ActivatedRoute,
               private emailConfirmService: EmailConfirmService,
@@ -85,5 +86,20 @@ export class SignInPageComponent implements OnInit {
     queryString = this.encodeQueryParams(queryParams);
     console.log('queryString: ' + queryString);
     window.location.href = this.oAuth42_url + '?' + queryString;
+  }
+
+  oAuthGoogle() {
+    let queryString: string;
+    let queryParams = {
+      client_id: '248773064708-bqnk5a6iq0lsa274bdcf5ije21lmqi5p.apps.googleusercontent.com',
+      redirect_uri: GlobalVariable.REDIRECT_GOOGLE_URL,
+      scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+      access_type: 'online',
+      response_type: 'code'
+    };
+
+    queryString = this.encodeQueryParams(queryParams);
+    console.log('queryString: ' + queryString);
+    window.location.href = this.oAuthGoogle_url + '?' + queryString;
   }
 }

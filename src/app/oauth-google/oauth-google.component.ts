@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Oauth42Service} from '../services/oauth42.service';
-import {Http} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import {OauthGoogleService} from '../services/oauth-google.service';
 
 @Component({
-  selector: 'app-oauth42',
-  templateUrl: './oauth42.component.html',
-  styleUrls: ['./oauth42.component.css']
+  selector: 'app-oauth-google',
+  templateUrl: './oauth-google.component.html',
+  styleUrls: ['./oauth-google.component.css']
 })
-export class Oauth42Component implements OnInit {
+export class OauthGoogleComponent implements OnInit {
 
   private code: string;
   public status = 'wait...';
 
   constructor(private route: ActivatedRoute,
-              private oauth42Service: Oauth42Service,
-              private router: Router) {}
+              private oauth_google_service: OauthGoogleService,
+              private router: Router) { }
 
   ngOnInit() {
     this.code = this.route.snapshot.queryParamMap.get('code');
     console.log('code: ' + this.code);
 
-    this.oauth42Service.readOne(this.code)
+
+
+    this.oauth_google_service.create({code: this.code})
       .subscribe(response => {
         console.log(response);
         if (response['token']) {
@@ -35,4 +35,5 @@ export class Oauth42Component implements OnInit {
           this.status = 'Unauthorized(';
       });
   }
+
 }

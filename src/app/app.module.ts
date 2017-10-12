@@ -34,6 +34,8 @@ import {VgOverlayPlayModule} from 'videogular2/overlay-play';
 import {VgBufferingModule} from 'videogular2/buffering';
 import { Oauth42Component } from './oauth42/oauth42.component';
 import {Oauth42Service} from './services/oauth42.service';
+import { OauthGoogleComponent } from './oauth-google/oauth-google.component';
+import {OauthGoogleService} from './services/oauth-google.service';
 
 
 
@@ -55,7 +57,8 @@ import {Oauth42Service} from './services/oauth42.service';
     ResetPasswordComponent,
     SignUpFormComponent,
     EditProfileFormComponent,
-    Oauth42Component
+    Oauth42Component,
+    OauthGoogleComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ import {Oauth42Service} from './services/oauth42.service';
       { path: 'sign-up', component: SignUpPageComponent},
       { path: 'reset-password', component: ResetPasswordComponent},
       { path: 'oauth42', component: Oauth42Component },
+      { path: 'oauth-google', component: OauthGoogleComponent },
       { path: '**', component: PageNotFoundComponent},
     ])
   ],
@@ -90,6 +94,7 @@ import {Oauth42Service} from './services/oauth42.service';
     AuthService,
     AuthGuard,
     Oauth42Service,
+    OauthGoogleService
     // { provide: ErrorHandler, useClass: AppErrorHandler },
 
   ],
