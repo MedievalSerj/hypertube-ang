@@ -36,6 +36,7 @@ import { Oauth42Component } from './oauth42/oauth42.component';
 import {Oauth42Service} from './services/oauth42.service';
 import { OauthGoogleComponent } from './oauth-google/oauth-google.component';
 import {OauthGoogleService} from './services/oauth-google.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -62,6 +63,7 @@ import {OauthGoogleService} from './services/oauth-google.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,

@@ -3,12 +3,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {EmailConfirmService} from '../services/email-confirm.service';
 import {AuthService} from '../services/auth.service';
 import {GlobalVariable} from '../global';
+import {fade} from '../common/animations';
 
 
 @Component({
   selector: 'app-sign-in-page',
   templateUrl: './sign-in-page.component.html',
-  styleUrls: ['./sign-in-page.component.css']
+  styleUrls: ['./sign-in-page.component.css'],
+  animations: [
+    fade
+  ]
 })
 export class SignInPageComponent implements OnInit {
 

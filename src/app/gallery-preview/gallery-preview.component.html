@@ -1,6 +1,7 @@
 <div class="pure-g ma-b-20">
 
-  <app-card-preview *ngFor="let card of previews"
+  <app-card-preview @fade
+                    *ngFor="let card of previews"
                     [title]="card.title"
                     [year]="card.year"
                     [rating]="card.rating"

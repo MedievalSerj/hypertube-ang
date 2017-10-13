@@ -1,10 +1,14 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {GalleryPreviewComponent} from '../gallery-preview/gallery-preview.component';
+import {fade} from '../common/animations';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.css']
+  styleUrls: ['./gallery.component.css'],
+  animations: [
+    fade
+  ]
 })
 export class GalleryComponent implements OnInit {
 

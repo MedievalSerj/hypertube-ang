@@ -1,13 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {PreviewsService} from '../services/previews.service';
 import {isUndefined} from 'util';
 import {ActivatedRoute} from '@angular/router';
+import {fade} from '../common/animations';
 
 
 @Component({
   selector: 'app-gallery-preview',
   templateUrl: './gallery-preview.component.html',
-  styleUrls: ['./gallery-preview.component.css']
+  styleUrls: ['./gallery-preview.component.css'],
+  animations: [
+    fade
+  ]
 })
 export class GalleryPreviewComponent implements OnInit {
 
@@ -21,10 +25,24 @@ export class GalleryPreviewComponent implements OnInit {
               private route: ActivatedRoute) {
   }
 
+//   @HostListener("window:scroll", ["$event"])
+//   onWindowScroll() {
+// //In chrome and some browser scroll is given to body tag
+//     let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+//     let max = document.documentElement.scrollHeight;
+// // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
+//     if(pos == max )   {
+//       //Do your action here
+//       console.log('bottom reached');
+//     }
+//   }
+
+
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
       this.searchword = params.get('searchWord');
       console.log('searchWord: ' + this.searchword);
+      this.more_results_disabled = false;
 
       let uri_prefix: string;
       if (!this.searchword)
@@ -41,26 +59,28 @@ export class GalleryPreviewComponent implements OnInit {
           this.previews_backup = this.previews;
         });
     });
+
+
   }
 
   getMore() {
-    if (!this.searchword) {
-      let from = this.previews.length;
-      let to = from + this.per_page;
-      console.log('from: ' + from);
-      console.log('to: ' + to);
-      this.preview_service.readOne(from + '/' + to)
-        .subscribe(response => {
-          console.log(response['search_results']);
-          let search_results = response['search_results'];
-          search_results.sort(this.comp_title_asc);
-          this.previews = this.previews.concat(search_results);
-          this.previews_backup = this.previews.concat(search_results);
-          if (search_results.length < this.per_page) {
-            this.more_results_disabled = true;
-          }
-        });
-    }
+    // if (!this.searchword) {
+    let from = this.previews.length;
+    let to = from + this.per_page;
+    console.log('from: ' + from);
+    console.log('to: ' + to);
+    this.preview_service.readOne(from + '/' + to)
+      .subscribe(response => {
+        console.log(response['search_results']);
+        let search_results = response['search_results'];
+        search_results.sort(this.comp_title_asc);
+        this.previews = this.previews.concat(search_results);
+        this.previews_backup = this.previews.concat(search_results);
+        if (search_results.length < this.per_page) {
+          this.more_results_disabled = true;
+        }
+      });
+    // }
   }
 
   sort(param, order) {

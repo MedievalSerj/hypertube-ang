@@ -1,16 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OauthGoogleService} from '../services/oauth-google.service';
+import {fade} from '../common/animations';
 
 @Component({
   selector: 'app-oauth-google',
   templateUrl: './oauth-google.component.html',
-  styleUrls: ['./oauth-google.component.css']
+  styleUrls: ['./oauth-google.component.css'],
+  animations: [
+    fade
+  ]
 })
 export class OauthGoogleComponent implements OnInit {
 
   private code: string;
-  public status = 'wait...';
+  public status = 'Authenticating google user...';
+  public loader_pending = true;
 
   constructor(private route: ActivatedRoute,
               private oauth_google_service: OauthGoogleService,
@@ -19,9 +24,6 @@ export class OauthGoogleComponent implements OnInit {
   ngOnInit() {
     this.code = this.route.snapshot.queryParamMap.get('code');
     console.log('code: ' + this.code);
-
-
-
     this.oauth_google_service.create({code: this.code})
       .subscribe(response => {
         console.log(response);
@@ -30,9 +32,11 @@ export class OauthGoogleComponent implements OnInit {
           this.router.navigate(['/']);
         } else {
           this.status = 'Unauthorized(';
+          this.loader_pending = false;
         }
       }, error => {
           this.status = 'Unauthorized(';
+          this.loader_pending = false;
       });
   }
 

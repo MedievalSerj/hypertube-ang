@@ -3,16 +3,21 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Oauth42Service} from '../services/oauth42.service';
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import {fade} from '../common/animations';
 
 @Component({
   selector: 'app-oauth42',
   templateUrl: './oauth42.component.html',
-  styleUrls: ['./oauth42.component.css']
+  styleUrls: ['./oauth42.component.css'],
+  animations: [
+    fade
+  ]
 })
 export class Oauth42Component implements OnInit {
 
   private code: string;
-  public status = 'wait...';
+  public status = 'Authenticating 42 user...';
+  public pending = true;
 
   constructor(private route: ActivatedRoute,
               private oauth42Service: Oauth42Service,
@@ -30,9 +35,11 @@ export class Oauth42Component implements OnInit {
           this.router.navigate(['/']);
         } else {
           this.status = 'Unauthorized(';
+          this.pending = false;
         }
       }, error => {
           this.status = 'Unauthorized(';
+          this.pending = false;
       });
   }
 }
