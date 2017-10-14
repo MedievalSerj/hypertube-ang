@@ -59,8 +59,14 @@ export class GalleryPreviewComponent implements OnInit {
           this.previews_backup = this.previews;
         });
     });
+  }
 
+  onInViewportChange(inViewport: boolean) {
 
+    if (inViewport) {
+      this.getMore();
+      console.log('BP');
+    }
   }
 
   getMore() {

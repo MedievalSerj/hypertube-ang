@@ -39,7 +39,7 @@ import {OauthGoogleService} from './services/oauth-google.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
-
+import { InViewportModule } from 'angular-inviewport';
 
 @NgModule({
   declarations: [
@@ -72,6 +72,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     VgOverlayPlayModule,
     VgBufferingModule,
     ImageUploadModule.forRoot(),
+    InViewportModule,
     RouterModule.forRoot([
       { path: '', component: GalleryComponent },
       // { path: 'watch/:title/:id', component: WatchPageComponent, canActivate: [AuthGuard]},
