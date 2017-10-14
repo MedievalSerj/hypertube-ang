@@ -1,100 +1,96 @@
 <div @fade class="pa-l-5 pa-r-5 ma-t-0">
   <div class="card filter-box ma-b-5">
 
-    <div class="pure-g">
-      <div class="pure-u-1-5">
-        <div class="text-left"><span>ORDER BY:</span></div>
-      </div>
-      <div class="pure-u-4-5">
+    <!--[class.ma-b-20]="this.show_order_filters"-->
+
+    <div (click)="show_hide_filters()" class="text-center pointer">
+      ORDER AND FILTER OPTIONS
+      <i *ngIf="!show_order_filters" class="fa fa-caret-down fa-lg"></i>
+      <i *ngIf="show_order_filters" class="fa fa-caret-up fa-lg"></i>
+    </div>
+
+    <div [@expandCollapse]="show_order_filters ? 'expanded' : 'collapsed'"
+        id="order-filters"
+        class="pa-t-20">
+      <form class="pure-form ma-b-10">
         <div class="pure-g">
+
           <div class="pure-u-1-2 pure-u-sm-1-4">
-            <span
+            <div
               (click)="title_order=!title_order; this.galleryPreview.sort('title', title_order)">
-              <span class="filter-btn">TITLE
-              <i *ngIf="title_order" class="fa fa-caret-down fa-lg"></i>
-              <i *ngIf="!title_order" class="fa fa-caret-up fa-lg"></i>
-            </span>
-            </span>
+              <div class="filter-btn ma-b-5">TITLE
+                <i *ngIf="title_order" class="fa fa-caret-down fa-lg"></i>
+                <i *ngIf="!title_order" class="fa fa-caret-up fa-lg"></i>
+              </div>
+            </div>
+            <div class="pa-r-5 pa-l-5">
+              <input [(ngModel)]="title_filter" name="title_field" class="width-100" type="text">
+            </div>
+
           </div>
-          <div class="pure-u-1-2  pure-u-sm-1-4">
-            <span (click)="genre_order=!genre_order; this.galleryPreview.sort('genre', genre_order)">
-              <span class="filter-btn">GENRE
+
+          <div class="pure-u-1-2 pure-u-sm-1-4">
+            <div
+              (click)="genre_order=!genre_order; this.galleryPreview.sort('genre', genre_order)">
+              <div class="filter-btn ma-b-5">GENRE
                 <i *ngIf="genre_order" class="fa fa-caret-down fa-lg"></i>
                 <i *ngIf="!genre_order" class="fa fa-caret-up fa-lg"></i>
-              </span>
-            </span>
+              </div>
+            </div>
+            <div class="pa-r-5 pa-l-5">
+              <input [(ngModel)]="genre_filter" name="genre_field" class="width-100" type="text">
+            </div>
           </div>
-          <div class="pure-u-1-2  pure-u-sm-1-4">
-            <span (click)="rating_order=!rating_order; this.galleryPreview.sort('rating', rating_order)">
-              <span class="filter-btn">RATING
+
+          <div class="pure-u-1-2 pure-u-sm-1-4">
+            <div
+              (click)="rating_order=!rating_order; this.galleryPreview.sort('rating', rating_order)">
+              <div class="filter-btn ma-b-5">RATING
                 <i *ngIf="rating_order" class="fa fa-caret-down fa-lg"></i>
                 <i *ngIf="!rating_order" class="fa fa-caret-up fa-lg"></i>
-              </span>
-            </span>
+              </div>
+            </div>
+            <div class="pa-r-5 pa-l-5">
+              <input [(ngModel)]="rating_filter_from" name="rating_from_field" class="half-input" type="text"
+                     placeholder="from">
+              <input [(ngModel)]="rating_filter_to" name="rating_to_field" class="half-input" type="text"
+                     placeholder="to">
+            </div>
           </div>
 
-          <div class="pure-u-1-2  pure-u-sm-1-4">
-            <span (click)="year_order=!year_order; this.galleryPreview.sort('year', year_order)">
-              <span class="filter-btn">YEAR
+          <div class="pure-u-1-2 pure-u-sm-1-4">
+            <div
+              (click)="year_order=!year_order; this.galleryPreview.sort('year', year_order)">
+              <div class="filter-btn ma-b-5">YEAR
                 <i *ngIf="year_order" class="fa fa-caret-down fa-lg"></i>
                 <i *ngIf="!year_order" class="fa fa-caret-up fa-lg"></i>
-              </span>
-            </span>
+              </div>
+            </div>
+            <div class="pa-r-5 pa-l-5">
+              <input [(ngModel)]="year_filter_from" name="year_from_field" class="half-input" type="text"
+                     placeholder="from">
+              <input [(ngModel)]="year_filter_to" name="year_to_field" class="half-input" type="text"
+                     placeholder="to">
+            </div>
           </div>
+
         </div>
-      </div>
-    </div>
-  </div>
+      </form>
 
-  <div @fade class="card filter-box ma-b-10">
-    <div class="pure-g">
-      <div class="pure-u-1-5 text-left">
-        <span class="filter-btn">FILTERS <i class="fa fa-caret-down fa-lg"></i></span>
+      <div>
+        <button (click)="this.galleryPreview.apply_filter(title_filter,
+              genre_filter,
+              rating_filter_from,
+              rating_filter_to,
+              year_filter_from,
+              year_filter_to)" class="pure-button pure-button-primary">APPLY FILTERS
+        </button>
+        <button (click)="this.galleryPreview.reset_filters()"
+                class="pure-button pure-button-primary">RESET FILTERS
+        </button>
       </div>
-      <div class="pure-u-4-5">
-        <form class="pure-form ma-b-10">
-          <div class="pure-g">
-            <div class="pure-u-1-2 pure-u-sm-1-4">
-              <div class="ma-b-10">TITLE</div>
-              <div class="pa-r-5 pa-l-5">
-                <input [(ngModel)]="title_filter" name="title_field" class="width-100" type="text">
-              </div>
-            </div>
-            <div class="pure-u-1-2 pure-u-sm-1-4">
-              <div class="ma-b-10">GENRE</div>
-              <div class="pa-r-5 pa-l-5">
-                <input [(ngModel)]="genre_filter" name="genre_field" class="width-100" type="text">
-              </div>
-            </div>
-            <div class="pure-u-1-2 pure-u-sm-1-4">
-              <div class="ma-b-10">RATING</div>
-              <div class="pa-r-5 pa-l-5">
-                <input [(ngModel)]="rating_filter_from" name="rating_from_field" class="half-input" type="text" placeholder="form">
-                <input [(ngModel)]="rating_filter_to" name="rating_to_field" class="half-input" type="text" placeholder="to">
-              </div>
-            </div>
-            <div class="pure-u-1-2 pure-u-sm-1-4">
-              <div class="ma-b-10">YEAR</div>
-              <div class="pa-r-5 pa-l-5">
-                <input [(ngModel)]="year_filter_from"  name="year_from_field" class="half-input" type="text" placeholder="form">
-                <input [(ngModel)]="year_filter_to"  name="year_to_field" class="half-input" type="text" placeholder="to">
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+    </div>
 
-    </div>
-    <div>
-      <button (click)="this.galleryPreview.apply_filter(title_filter,
-      genre_filter,
-      rating_filter_from,
-      rating_filter_to,
-      year_filter_from,
-      year_filter_to)" class="pure-button pure-button-primary">APPLY FILTERS</button>
-      <button (click)="this.galleryPreview.reset_filters()"
-              class="pure-button pure-button-primary">RESET FILTERS</button>
-    </div>
   </div>
 </div>
 

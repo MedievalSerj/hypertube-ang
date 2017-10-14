@@ -68,7 +68,7 @@ body {
 
 .filter-box {
   margin-left: auto;
-  margin-right: auto;
+  /*margin-right: auto;*/
   width: 100%;
   max-width: 1000px;
 }
@@ -263,6 +263,14 @@ body {
 
 .pa-10 {
   padding: 10px;
+}
+
+.pa-t-15 {
+  padding-top: 15px;
+}
+
+.pa-t-20 {
+  padding-top: 20px;
 }
 
 .pa-l-5 {

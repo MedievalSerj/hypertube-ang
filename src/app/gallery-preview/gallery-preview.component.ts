@@ -25,18 +25,6 @@ export class GalleryPreviewComponent implements OnInit {
               private route: ActivatedRoute) {
   }
 
-//   @HostListener("window:scroll", ["$event"])
-//   onWindowScroll() {
-// //In chrome and some browser scroll is given to body tag
-//     let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
-//     let max = document.documentElement.scrollHeight;
-// // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
-//     if(pos == max )   {
-//       //Do your action here
-//       console.log('bottom reached');
-//     }
-//   }
-
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
@@ -121,10 +109,10 @@ export class GalleryPreviewComponent implements OnInit {
                year_to) {
     this.previews = this.previews_backup;
     if (!isUndefined(title) && title !== '') {
-      this.previews = this.previews_backup.filter(item => item.title.indexOf(title) !== -1);
+      this.previews = this.previews_backup.filter(item => item.title.toLowerCase().indexOf(title.toLowerCase()) !== -1);
     }
     if (!isUndefined(genre) && genre !== '') {
-      this.previews = this.previews.filter(item => item.genre.indexOf(genre) !== -1);
+      this.previews = this.previews.filter(item => item.genre.toLowerCase().indexOf(genre.toLowerCase()) !== -1);
     }
     if (!isUndefined(rating_from) && rating_from !== '') {
       let n = parseInt(rating_from);

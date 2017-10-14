@@ -1,13 +1,31 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {GalleryPreviewComponent} from '../gallery-preview/gallery-preview.component';
 import {fade} from '../common/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css'],
   animations: [
-    fade
+    fade,
+    trigger('expandCollapse', [
+      state('collapsed', style({
+        height: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
+        overflow: 'hidden'
+      })),
+
+      transition('collapsed => expanded', [
+        animate('200ms')
+      ]),
+
+      transition('expanded => collapsed', [
+        animate('200ms')
+      ])
+
+    ])
   ]
 })
 export class GalleryComponent implements OnInit {
@@ -21,6 +39,8 @@ export class GalleryComponent implements OnInit {
   year_filter_from: string;
   year_filter_to: string;
 
+  show_order_filters = false;
+
   title_order = true;
   genre_order = true;
   rating_order = true;
@@ -29,11 +49,11 @@ export class GalleryComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  show_hide_filters() {
+    this.show_order_filters = !this.show_order_filters;
   }
 
-  debugPrint() {
-
+  ngOnInit() {
   }
 
 

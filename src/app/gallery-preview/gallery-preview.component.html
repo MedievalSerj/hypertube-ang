@@ -1,4 +1,4 @@
-<div class="pure-g ma-b-60">
+<div class="pure-g ma-b-20">
 
   <app-card-preview @fade
                     *ngFor="let card of previews"
@@ -13,6 +13,7 @@
 
 </div>
 <div inViewport
-     (onInViewportChange)="onInViewportChange($event)">
-  <!--<button [disabled]="more_results_disabled" (click)="getMore()" class="pure-button pure-button-primary">MORE RESULTS</button>-->
+     (onInViewportChange)="onInViewportChange($event)"
+      class="ma-b-60">
+  <button [disabled]="more_results_disabled" (click)="getMore()" class="pure-button pure-button-primary">MORE RESULTS</button>
 </div>
