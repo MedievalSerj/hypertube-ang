@@ -1,5 +1,6 @@
-//     /watch/<id:int>/<title:string>
-//     /watch/<id:int>
+//      /search/<searchword:str>/<start:int>/<stop:int>
+//      /search/<start:int>/<stop:int>
+
 {
   "id": 1,
   "title": "Kill switch",

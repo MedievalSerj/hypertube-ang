@@ -40,6 +40,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 import { InViewportModule } from 'angular-inviewport';
+import {WatchedMoviesService} from './services/watched-movies.service';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { InViewportModule } from 'angular-inviewport';
     AuthService,
     AuthGuard,
     Oauth42Service,
-    OauthGoogleService
+    OauthGoogleService,
+    WatchedMoviesService
     // { provide: ErrorHandler, useClass: AppErrorHandler },
 
   ],

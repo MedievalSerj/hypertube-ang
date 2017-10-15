@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {fade} from '../common/animations';
+import {WatchedMoviesService} from '../services/watched-movies.service';
 
 @Component({
   selector: 'app-watch-page',
@@ -11,9 +12,12 @@ import {fade} from '../common/animations';
 })
 export class WatchPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private watchedMovieService: WatchedMoviesService) { }
 
   ngOnInit() {
+
+
+    // this.watchedMovieService.create();
   }
 
 }
