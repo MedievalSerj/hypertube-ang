@@ -41,6 +41,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { InViewportModule } from 'angular-inviewport';
 import {WatchedMoviesService} from './services/watched-movies.service';
+import { CommentsComponent } from './comments/comments.component';
+import {CommentsService} from './services/comments.service';
+import {Nl2BrPipe} from "nl2br-pipe";
 
 @NgModule({
   declarations: [
@@ -60,7 +63,9 @@ import {WatchedMoviesService} from './services/watched-movies.service';
     SignUpFormComponent,
     EditProfileFormComponent,
     Oauth42Component,
-    OauthGoogleComponent
+    OauthGoogleComponent,
+    CommentsComponent,
+    Nl2BrPipe
   ],
   imports: [
     BrowserModule,
@@ -77,7 +82,7 @@ import {WatchedMoviesService} from './services/watched-movies.service';
     RouterModule.forRoot([
       { path: '', component: GalleryComponent },
       // { path: 'watch/:title/:id', component: WatchPageComponent, canActivate: [AuthGuard]},
-      { path: 'watch/:title/:id', component: WatchPageComponent},
+      { path: 'watch/:id', component: WatchPageComponent},
       { path: 'my-profile', component: MyProfilePageComponent, canActivate: [AuthGuard]},
       { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
       { path: 'sign-in', component: SignInPageComponent},
@@ -99,7 +104,8 @@ import {WatchedMoviesService} from './services/watched-movies.service';
     AuthGuard,
     Oauth42Service,
     OauthGoogleService,
-    WatchedMoviesService
+    WatchedMoviesService,
+    CommentsService
     // { provide: ErrorHandler, useClass: AppErrorHandler },
 
   ],

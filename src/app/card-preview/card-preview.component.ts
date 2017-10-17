@@ -35,6 +35,6 @@ export class CardPreviewComponent implements OnInit {
   }
 
   public watch(event) {
-    this.router.navigate(['/watch', this.title, this.id]);
+    this.router.navigate(['/watch', this.id]);
   }
 }

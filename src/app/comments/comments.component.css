@@ -1,0 +1,10 @@
+textarea {
+  width: 100%;
+}
+
+.comment-avatar {
+  position: relative;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
