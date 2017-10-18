@@ -33,7 +33,6 @@ export class CommentsComponent implements OnInit {
     let token = localStorage.getItem('token');
     let jwtHelper = new JwtHelper();
     this.current_user = jwtHelper.decodeToken(token);
-    // console.log(this.current_user);
   }
 
   addComment(comment_input) {

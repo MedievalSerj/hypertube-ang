@@ -44,6 +44,8 @@ import {WatchedMoviesService} from './services/watched-movies.service';
 import { CommentsComponent } from './comments/comments.component';
 import {CommentsService} from './services/comments.service';
 import {Nl2BrPipe} from "nl2br-pipe";
+import {ResetService} from './services/reset.service';
+import { CreateNewPasswdComponent } from './create-new-passwd/create-new-passwd.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import {Nl2BrPipe} from "nl2br-pipe";
     Oauth42Component,
     OauthGoogleComponent,
     CommentsComponent,
-    Nl2BrPipe
+    Nl2BrPipe,
+    CreateNewPasswdComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +93,7 @@ import {Nl2BrPipe} from "nl2br-pipe";
       { path: 'reset-password', component: ResetPasswordComponent},
       { path: 'oauth42', component: Oauth42Component },
       { path: 'oauth-google', component: OauthGoogleComponent },
+      { path: 'create_new_password', component: CreateNewPasswdComponent},
       { path: '**', component: PageNotFoundComponent},
     ])
   ],
@@ -105,7 +109,8 @@ import {Nl2BrPipe} from "nl2br-pipe";
     Oauth42Service,
     OauthGoogleService,
     WatchedMoviesService,
-    CommentsService
+    CommentsService,
+    ResetService
     // { provide: ErrorHandler, useClass: AppErrorHandler },
 
   ],

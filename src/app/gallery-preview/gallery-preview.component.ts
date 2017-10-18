@@ -3,6 +3,8 @@ import {PreviewsService} from '../services/previews.service';
 import {isUndefined} from 'util';
 import {ActivatedRoute} from '@angular/router';
 import {fade} from '../common/animations';
+import {WatchedMoviesService} from '../services/watched-movies.service';
+import {JwtHelper} from 'angular2-jwt';
 
 
 @Component({
@@ -17,12 +19,15 @@ export class GalleryPreviewComponent implements OnInit {
 
   public previews: any[] = [];
   public previews_backup: any[] = [];
+  public watched_movies: any[] = [];
   public searchword = null;
   private per_page = 3;
   public more_results_disabled = false;
+  private current_user: any;
 
   constructor(private preview_service: PreviewsService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private watchedMoviesService: WatchedMoviesService) {
   }
 
 
@@ -47,10 +52,25 @@ export class GalleryPreviewComponent implements OnInit {
           this.previews_backup = this.previews;
         });
     });
+    let token = localStorage.getItem('token');
+    if (token) {
+      let jwtHelper = new JwtHelper();
+      this.current_user = jwtHelper.decodeToken(token);
+
+      this.watchedMoviesService.readOne(this.current_user.user_id)
+        .subscribe(result => {
+          this.watched_movies = result;
+          // console.log(result);
+        });
+
+    }
+  }
+
+  movieIsSeen(movie_id) {
+    return this.watched_movies.indexOf(movie_id) != -1;
   }
 
   onInViewportChange(inViewport: boolean) {
-
     if (inViewport) {
       this.getMore();
       console.log('BP');
@@ -58,7 +78,6 @@ export class GalleryPreviewComponent implements OnInit {
   }
 
   getMore() {
-    // if (!this.searchword) {
     let from = this.previews.length;
     let to = from + this.per_page;
     console.log('from: ' + from);
@@ -74,7 +93,6 @@ export class GalleryPreviewComponent implements OnInit {
           this.more_results_disabled = true;
         }
       });
-    // }
   }
 
   sort(param, order) {
