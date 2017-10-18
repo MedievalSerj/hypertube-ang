@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommentsService} from '../services/comments.service';
 import {GlobalVariable} from '../global';
 import {JwtHelper} from 'angular2-jwt';
@@ -21,30 +21,44 @@ export class CommentsComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.route.paramMap.
-    this.commentsService.readOne(42)
+    this.route.paramMap.
+      subscribe(result => {
+        this.movie_id = result['params'].id;
+    });
+    this.commentsService.readOne(this.movie_id)
       .subscribe(result => {
         this.comments = result.comments;
-        console.log(this.comments);
+        // console.log(this.comments);
       });
     let token = localStorage.getItem('token');
     let jwtHelper = new JwtHelper();
-
     this.current_user = jwtHelper.decodeToken(token);
-
-    console.log(this.current_user);
-
+    // console.log(this.current_user);
   }
 
   addComment(comment_input) {
-    console.log(comment_input.value);
-    this.comments.unshift(comment_input.value);
-    // comment_input.value = '';
+    // console.log(comment_input.value);
+    let comment = this.initComment(comment_input.value);
+    this.comments.unshift(comment);
+    this.commentsService.create({
+      'movie_id': this.movie_id,
+      'user_id': this.current_user.user_id,
+      'msg': comment_input.value
+    })
+      .subscribe();
+        comment_input.value = '';
   }
 
 
-  placeComment() {
-
+  initComment(msg) {
+    return new Object({
+      'user_id': this.current_user.id,
+      'movie_id': this.movie_id,
+      'msg': msg,
+      'date_time': Date.now() / 1000,
+      'login': this.current_user.login,
+      'avatar_url': this.current_user.avatar_url
+    });
   }
 
   avatarUrl(comment) {

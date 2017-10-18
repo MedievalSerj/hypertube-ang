@@ -26,8 +26,8 @@
         <div class="ma-b-5">
           {{ comment.login }}&nbsp;&nbsp;&nbsp;{{ comment.date_time * 1000 | date:'MMMM d, H:mm' }}
         </div>
-        <div>
-          {{ comment.msg }}
+
+        <div [innerHTML]="comment.msg | nl2br">
         </div>
       </div>
     </div>
