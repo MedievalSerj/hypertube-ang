@@ -166,6 +166,12 @@ body {
   max-width: 800px;
 }
 
+.profile_avatar {
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 #btn-photo {
   /*max-width: 140px;*/
   /*width: 100%;*/

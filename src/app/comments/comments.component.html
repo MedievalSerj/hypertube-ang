@@ -6,7 +6,8 @@
 
     <div class="hypertube-comment position-relative">
       <form class="pure-form ma-t-10 ma-b-10">
-        <textarea #comment_input (keyup.enter)="addComment(comment_input)" name="comment_input" rows="4" placeholder="live a comment" class=""></textarea>
+        <textarea #comment_input (keyup.enter)="addComment(comment_input)" name="comment_input" rows="4"
+                  placeholder="live a comment" class=""></textarea>
       </form>
       <div class="text-center ma-b-5">
         <button (click)="addComment(comment_input)" class="pure-button pure-button-primary">ADD COMMENT</button>
@@ -15,11 +16,10 @@
 
 
     <div *ngFor="let comment of comments" class="hypertube-comment pure-g">
-
-      <div  class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
-        <div class="display-inline-block avatar-img comment-avatar"
-             [style.background-image]="'url(' + avatarUrl(comment) + ')'">
-        </div>
+      <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
+          <div [routerLink]="['/profile', comment.user_id]" class="display-inline-block avatar-img comment-avatar"
+               [style.background-image]="'url(' + avatarUrl(comment) + ')'">
+          </div>
       </div>
       <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
 
@@ -31,87 +31,6 @@
         </div>
       </div>
     </div>
-
-
-    <!--<div class="hypertube-comment pure-g">-->
-    <!--<div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">-->
-    <!--<div class="display-inline-block avatar-img"-->
-    <!--style="background: url('assets/faces/walter-white.jpg') no-repeat center">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">-->
-
-    <!--<div class="ma-b-5">-->
-    <!--Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57-->
-    <!--</div>-->
-    <!--<div>-->
-    <!--Lorem ipsum dolor sit amet,-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-
-    <!--<div class="hypertube-comment pure-g">-->
-    <!--<div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">-->
-    <!--<div class="display-inline-block avatar-img"-->
-    <!--style="background: url('assets/faces/walter-white.jpg') no-repeat center">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">-->
-
-    <!--<div class="ma-b-5">-->
-    <!--Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57-->
-    <!--</div>-->
-    <!--<div>-->
-    <!--Lorem-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-
-    <!--<div class="hypertube-comment pure-g">-->
-    <!--<div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">-->
-    <!--<div class="display-inline-block avatar-img"-->
-    <!--style="background: url('assets/faces/walter-white.jpg') no-repeat center">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">-->
-
-    <!--<div class="ma-b-5">-->
-    <!--Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57-->
-    <!--</div>-->
-    <!--<div>-->
-    <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut-->
-    <!--labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco-->
-    <!--laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in-->
-    <!--voluptate-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-
-    <!--<div class="hypertube-comment pure-g">-->
-    <!--<div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">-->
-    <!--<div class="display-inline-block avatar-img"-->
-    <!--style="background: url('assets/faces/walter-white.jpg') no-repeat center">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">-->
-
-    <!--<div class="ma-b-5">-->
-    <!--Walter&nbsp;&nbsp;&nbsp;Aug 9, 21:57-->
-    <!--</div>-->
-    <!--<div>-->
-    <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut-->
-    <!--labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco-->
-    <!--laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in-->
-    <!--voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat-->
-    <!--cupidatat-->
-    <!--non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
 
   </div>
 </div>

@@ -84,10 +84,9 @@ import { CreateNewPasswdComponent } from './create-new-passwd/create-new-passwd.
     InViewportModule,
     RouterModule.forRoot([
       { path: '', component: GalleryComponent },
-      // { path: 'watch/:title/:id', component: WatchPageComponent, canActivate: [AuthGuard]},
-      { path: 'watch/:id', component: WatchPageComponent},
+      { path: 'watch/:id', component: WatchPageComponent,canActivate: [AuthGuard]},
       { path: 'my-profile', component: MyProfilePageComponent, canActivate: [AuthGuard]},
-      { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
+      { path: 'profile/:id', component: ProfilePageComponent, canActivate: [AuthGuard]},
       { path: 'sign-in', component: SignInPageComponent},
       { path: 'sign-up', component: SignUpPageComponent},
       { path: 'reset-password', component: ResetPasswordComponent},

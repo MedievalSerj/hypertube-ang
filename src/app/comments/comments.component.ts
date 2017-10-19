@@ -28,7 +28,7 @@ export class CommentsComponent implements OnInit {
     this.commentsService.readOne(this.movie_id)
       .subscribe(result => {
         this.comments = result.comments;
-        // console.log(this.comments);
+        console.log(this.comments);
       });
     let token = localStorage.getItem('token');
     let jwtHelper = new JwtHelper();
@@ -36,9 +36,12 @@ export class CommentsComponent implements OnInit {
   }
 
   addComment(comment_input) {
-    // console.log(comment_input.value);
+
     let comment = this.initComment(comment_input.value);
     this.comments.unshift(comment);
+
+    console.log(this.comments);
+
     this.commentsService.create({
       'movie_id': this.movie_id,
       'user_id': this.current_user.user_id,
@@ -48,10 +51,9 @@ export class CommentsComponent implements OnInit {
         comment_input.value = '';
   }
 
-
   initComment(msg) {
     return new Object({
-      'user_id': this.current_user.id,
+      'user_id': this.current_user.user_id,
       'movie_id': this.movie_id,
       'msg': msg,
       'date_time': Date.now() / 1000,

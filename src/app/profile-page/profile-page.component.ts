@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
-import {MyValidators} from '../common/validators/my.validators';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {UserService} from '../services/user.service';
+import {GlobalVariable} from '../global';
 
 @Component({
   selector: 'app-profile-page',
@@ -9,10 +10,23 @@ import {MyValidators} from '../common/validators/my.validators';
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor() {
-  }
+  user_id;
+  user = null;
+
+  constructor(private route: ActivatedRoute,
+              private userService: UserService) {}
 
   ngOnInit() {
-  }
+    this.route.paramMap.subscribe(result => {
+      this.user_id = result.get('id');
 
+    });
+
+    this.userService.readOne(this.user_id)
+      .subscribe(result => {
+        this.user = result;
+        console.log(this.user);
+        this.user.avatar_url = GlobalVariable.FLASK_API_URL + this.user.avatar_url;
+      });
+  }
 }
