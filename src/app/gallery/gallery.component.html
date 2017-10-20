@@ -3,8 +3,11 @@
 
     <!--[class.ma-b-20]="this.show_order_filters"-->
 
-    <div (click)="show_hide_filters()" class="text-center pointer">
-      ORDER AND FILTER OPTIONS
+    <div (click)="show_hide_filters()"
+         class="text-center pointer">
+      <ng-container i18n="Filter box heading @@idorder_filter">
+        ORDER AND FILTER OPTIONS
+      </ng-container>
       <i *ngIf="!show_order_filters" class="fa fa-caret-down fa-lg"></i>
       <i *ngIf="show_order_filters" class="fa fa-caret-up fa-lg"></i>
     </div>

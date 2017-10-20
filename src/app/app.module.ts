@@ -27,7 +27,7 @@ import {ImageUploadModule} from 'angular2-image-upload';
 import {EmailConfirmService} from './services/email-confirm.service';
 import {AuthService} from './services/auth.service';
 import {AppErrorHandler} from './app-error-handler';
-import {AuthGuard} from './services/auth-guard.service';
+import {AuthGuardService} from './services/auth-guard.service';
 import {VgCoreModule} from 'videogular2/core';
 import {VgControlsModule} from 'videogular2/controls';
 import {VgOverlayPlayModule} from 'videogular2/overlay-play';
@@ -84,9 +84,9 @@ import { CreateNewPasswdComponent } from './create-new-passwd/create-new-passwd.
     InViewportModule,
     RouterModule.forRoot([
       { path: '', component: GalleryComponent },
-      { path: 'watch/:id', component: WatchPageComponent,canActivate: [AuthGuard]},
-      { path: 'my-profile', component: MyProfilePageComponent, canActivate: [AuthGuard]},
-      { path: 'profile/:id', component: ProfilePageComponent, canActivate: [AuthGuard]},
+      { path: 'watch/:id', component: WatchPageComponent,canActivate: [AuthGuardService]},
+      { path: 'my-profile', component: MyProfilePageComponent, canActivate: [AuthGuardService]},
+      { path: 'profile/:id', component: ProfilePageComponent, canActivate: [AuthGuardService]},
       { path: 'sign-in', component: SignInPageComponent},
       { path: 'sign-up', component: SignUpPageComponent},
       { path: 'reset-password', component: ResetPasswordComponent},
@@ -104,7 +104,7 @@ import { CreateNewPasswdComponent } from './create-new-passwd/create-new-passwd.
     UserService,
     EmailConfirmService,
     AuthService,
-    AuthGuard,
+    AuthGuardService,
     Oauth42Service,
     OauthGoogleService,
     WatchedMoviesService,
