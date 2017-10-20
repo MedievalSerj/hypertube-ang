@@ -8,7 +8,9 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class DataService {
 
-  constructor(private url: string, private http: Http) {
+  url: string;
+
+  constructor(private http: Http) {
   }
 
   readAll() {

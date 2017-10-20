@@ -8,6 +8,7 @@ import {Http} from '@angular/http';
 export class UserService extends DataService {
 
   constructor(http: Http) {
-    super(GlobalVariable.FLASK_API_URL + '/user', http);
+    super(http);
+    this.url = GlobalVariable.FLASK_API_URL + '/user';
   }
 }

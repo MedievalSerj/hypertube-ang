@@ -7,7 +7,8 @@ import {GlobalVariable} from '../global';
 export class WatchedMoviesService extends DataService {
 
   constructor(http: Http) {
-    super(GlobalVariable.FLASK_API_URL + '/watched_movies', http);
+    super(http);
+    this.url = GlobalVariable.FLASK_API_URL + '/watched_movies';
   }
 
 }

@@ -7,7 +7,8 @@ import {GlobalVariable} from '../global';
 export class CommentsService extends DataService {
 
   constructor(http: Http) {
-    super(GlobalVariable.FLASK_API_URL + '/comments', http);
+    super(http);
+    this.url = GlobalVariable.FLASK_API_URL + '/comments';
   }
 
 }

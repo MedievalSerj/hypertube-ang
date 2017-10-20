@@ -7,6 +7,7 @@ import {GlobalVariable} from '../global';
 export class PreviewsService extends DataService {
 
   constructor(http: Http) {
-    super(GlobalVariable.NODE_API_URL + '/search', http);
+    super(http);
+    this.url = GlobalVariable.NODE_API_URL + '/search';
   }
 }

@@ -7,7 +7,8 @@ import {GlobalVariable} from '../global';
 export class EmailConfirmService extends DataService {
 
   constructor(http: Http) {
-    super(GlobalVariable.FLASK_API_URL + '/confirm_email', http);
+    super(http);
+    this.url = GlobalVariable.FLASK_API_URL + '/confirm_email';
   }
 
 }
