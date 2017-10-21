@@ -10,3 +10,9 @@
 .display_table {
   display: table;
 }
+
+.front-img {
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+}

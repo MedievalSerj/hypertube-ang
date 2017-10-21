@@ -14,6 +14,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class WatchPageComponent implements OnInit {
 
+  public movie;
   private current_user: any;
   private movie_id: any;
   src_txt = '1080p';
@@ -35,9 +36,13 @@ export class WatchPageComponent implements OnInit {
     this.watchedMovieService.create({
       movie_id: this.movie_id,
       user_id: this.current_user.user_id
-    }).subscribe(result => console.log('watched movies updated'));
-
+    }).subscribe();
     this.src = this.sources[0];
+
+    // console.log('id=' + localStorage.getItem('id'));
+    this.movie = JSON.parse(localStorage.getItem('movie'));
+    console.log(this.movie);
+
   }
 
   selectSrc() {
@@ -50,6 +55,6 @@ export class WatchPageComponent implements OnInit {
         this.src_txt = '1080p';
       }
     }
-    console.log(this.src);
+    // console.log(this.src);
   }
 }

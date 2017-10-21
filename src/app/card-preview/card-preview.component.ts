@@ -36,7 +36,11 @@ export class CardPreviewComponent implements OnInit {
   }
 
   public watch(event) {
-    console.log(this.self);
+    // console.log(this.self);
+    // console.log(this.self['id']);
+
+    localStorage.setItem('movie', JSON.stringify(this.self));
     this.router.navigate(['/watch', this.id]);
+
   }
 }

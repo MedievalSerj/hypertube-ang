@@ -49,21 +49,21 @@
       <span class="filter-btn">
         <ng-container i18n="@@watch_page_about_title">
           ABOUT </ng-container><i class="fa fa-caret-down fa-lg"></i></span>
-      <h4 class="ma-t-10 ma-b-10">Матрица времени</h4>
-      <div class="movie-img pa-r-5 pa-l-5 ma-b-5"
-           style="background: url('assets/img/pic_11.jpg') no-repeat center;">
+      <h4 class="ma-t-10 ma-b-10">{{ movie.title }}</h4>
+      <div class="movie-img pa-r-5 pa-l-5 ma-b-5 front-img"
+           [style.background-image]="'url(' + movie.photo_url + ')'">
       </div>
       <p class="text-left ma-0">
         <ng-container i18n="@@comments_about_year">
-          Year</ng-container>: 2017<br>
+          Year</ng-container>: {{ movie.year }}<br>
         <ng-container i18n="@@comments_about_genre">
-          Genre</ng-container>: adventure<br>
+          Genre</ng-container>: {{ movie.genre }}<br>
         <ng-container i18n="@@comments_about_rating">
-          Rating</ng-container>: 100500<br>
+          Rating</ng-container>: {{ movie.rating }}<br>
         <ng-container i18n="@@comments_about_director">
-          Director</ng-container>: Someone Else<br>
+          Director</ng-container>: {{ movie.director }}<br>
         <ng-container i18n="@@comments_about_actors">
-          Actors</ng-container>: Robin Wiliams, Robin Good, Robin Bad
+          Actors</ng-container>: {{ movie.actors }}
       </p>
     </div>
   </div>
@@ -71,9 +71,14 @@
 
 <div class="card-preview-container watch_width ma-auto">
   <div class="card">
-    <span class="filter-btn">
+    <div>
+      <span class="filter-btn">
       <ng-container i18n="@@comments_summary_title">
         SUMMARY</ng-container> <i class="fa fa-caret-down fa-lg"></i></span>
+    </div>
+    <div>
+      {{ movie.description }}
+    </div>
   </div>
 </div>
 
