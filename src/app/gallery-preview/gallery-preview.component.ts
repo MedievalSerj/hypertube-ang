@@ -1,7 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {PreviewsService} from '../services/previews.service';
 import {isUndefined} from 'util';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {fade} from '../common/animations';
 import {WatchedMoviesService} from '../services/watched-movies.service';
 import {JwtHelper} from 'angular2-jwt';
@@ -27,14 +27,14 @@ export class GalleryPreviewComponent implements OnInit {
 
   constructor(private preview_service: PreviewsService,
               private route: ActivatedRoute,
-              private watchedMoviesService: WatchedMoviesService) {
+              private watchedMoviesService: WatchedMoviesService,
+              private router: Router) {
   }
 
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
       this.searchword = params.get('searchWord');
-      console.log('searchWord: ' + this.searchword);
       this.more_results_disabled = false;
 
       let uri_prefix: string;
@@ -42,9 +42,6 @@ export class GalleryPreviewComponent implements OnInit {
         uri_prefix = '0/';
       else
         uri_prefix = this.searchword + '/0/';
-
-      console.log('uri_prefix: ' + uri_prefix);
-
       this.preview_service.readOne(uri_prefix + this.per_page)
         .subscribe(response => {
           this.previews = response['search_results'];
@@ -60,9 +57,7 @@ export class GalleryPreviewComponent implements OnInit {
       this.watchedMoviesService.readOne(this.current_user.user_id)
         .subscribe(result => {
           this.watched_movies = result;
-          // console.log(result);
         });
-
     }
   }
 

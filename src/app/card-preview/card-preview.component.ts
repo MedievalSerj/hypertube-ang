@@ -13,6 +13,7 @@ export class CardPreviewComponent implements OnInit {
   @Input() rating: number;
   @Input() img_url: string;
   @Input() is_seen: boolean;
+  @Input() self: object;
 
   @ViewChild('movieImg') movoeImg;
 
@@ -35,6 +36,7 @@ export class CardPreviewComponent implements OnInit {
   }
 
   public watch(event) {
+    console.log(this.self);
     this.router.navigate(['/watch', this.id]);
   }
 }
