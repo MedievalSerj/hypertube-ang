@@ -111,7 +111,6 @@ import { CreateNewPasswdComponent } from './create-new-passwd/create-new-passwd.
     CommentsService,
     ResetService
     // { provide: ErrorHandler, useClass: AppErrorHandler },
-
   ],
   bootstrap: [AppComponent]
 })
