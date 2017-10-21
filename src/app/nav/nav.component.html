@@ -6,7 +6,15 @@
     <ul class="pure-menu-list ma-l-10" id="searchbar_ul">
       <li class="pure-menu-item">
         <form class="pure-form center">
-          <input #searchBox (keyup.enter)="search(searchBox)" ngModel name="search_input" class="searchbar pure-input-rounded" type="text" placeholder="search...">
+          <input #searchBox
+                 (keyup.enter)="search(searchBox)"
+                 ngModel
+                 name="search_input"
+                 class="searchbar
+                 pure-input-rounded"
+                 type="text"
+                 i18n-placeholder="searchbar @@id_searchbar"
+                 placeholder="search...">
         </form>
       </li>
       <li class="pure-menu-item" routerLinkActive="pure-menu-selected">
@@ -15,35 +23,62 @@
       </li>
     </ul>
 
-      <ul class="pure-menu-list" id="nav-ul" style="float: right">
-        <li class="pure-menu-item" routerLinkActive="pure-menu-selected" [routerLinkActiveOptions]="{ exact: true }"><a
-          routerLink="" class="pure-menu-link color_front_10"><span
-          class="menu-lable">GALLERY</span>
-          <i class="fa fa-film"></i></a>
-        </li>
-        <li *ngIf="authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected"><a
-          routerLink="/my-profile"
-          class="pure-menu-link color_front_10"><span
-          class="menu-lable">MY SETTINGS</span>
-          <i class="fa fa-cog"></i></a>
-        </li>
-        <li *ngIf="!authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected"><a
-          routerLink="/sign-up"
-          class="pure-menu-link color_front_10"><span
-          class="menu-lable">SIGN-UP</span>
-          <i class="fa fa-user-plus"></i></a>
-        </li>
-        <li *ngIf="!authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected">
-          <a routerLink="sign-in" class="pure-menu-link color_front_10"><span
-            class="menu-lable">SIGN-IN</span>
-            <i class="fa fa-sign-in"></i></a>
-        </li>
-        <li *ngIf="authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected">
-          <a (click)="logOut()" class="pure-menu-link color_front_10 pointer"><span
-            class="menu-lable">SIGN-OUT</span>
-            <i class="fa fa-sign-out"></i></a>
-        </li>
-      </ul>
+    <ul class="pure-menu-list" id="nav-ul" style="float: right">
+
+      <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+        <a href="#/" id="menuLink1" class="pure-menu-link color_front_10">EN</a>
+        <ul class="pure-menu-children color_front_10">
+          <li class="pure-menu-item"><a href="#" class="sub-menu pure-menu-link color_front_10">EN</a>
+          </li>
+          <li class="pure-menu-item"><a href="#" class="sub-menu pure-menu-link color_front_10">RU</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="pure-menu-item" routerLinkActive="pure-menu-selected" [routerLinkActiveOptions]="{ exact: true }"><a
+        routerLink="" class="pure-menu-link color_front_10">
+        <span class="menu-lable"
+              i18n="nav gallery @@id_nav_gallery">
+          GALLERY
+        </span>
+        <i class="fa fa-film"></i></a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected"><a
+        routerLink="/my-profile"
+        class="pure-menu-link color_front_10">
+        <span class="menu-lable"
+              i18n="nav my_settings @@id_nav_my_settings">
+          MY SETTINGS
+        </span>
+        <i class="fa fa-cog"></i></a>
+      </li>
+      <li *ngIf="!authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected"><a
+        routerLink="/sign-up"
+        class="pure-menu-link color_front_10">
+        <span class="menu-lable"
+              i18n="nav sign-up @@id_nav_sign_up">
+          SIGN-UP
+        </span>
+        <i class="fa fa-user-plus"></i></a>
+      </li>
+      <li *ngIf="!authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected">
+        <a routerLink="sign-in" class="pure-menu-link color_front_10">
+          <span class="menu-lable"
+                i18n="nav sign-in @@id_nav_sign_in">
+            SIGN-IN
+          </span>
+          <i class="fa fa-sign-in">
+          </i></a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()" class="pure-menu-item" routerLinkActive="pure-menu-selected">
+        <a (click)="logOut()" class="pure-menu-link color_front_10 pointer">
+          <span class="menu-lable"
+                i18n="nav sign-out @@id_nav_sign_out">
+            SIGN-OUT
+          </span>
+          <i class="fa fa-sign-out"></i></a>
+      </li>
+    </ul>
   </div>
 </div>
 

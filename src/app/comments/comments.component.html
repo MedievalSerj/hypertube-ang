@@ -1,16 +1,22 @@
 <div class="card-preview-container watch_width ma-auto ma-b-60">
   <div class="card comment-box">
     <div class="ma-t-15 ma-b-15">
-      <span class="filter-btn">COMMENTS <i class="fa fa-caret-down fa-lg"></i></span>
+      <span class="filter-btn">
+        <ng-container i18n="@@comments_title">
+          COMMENTS</ng-container> <i class="fa fa-caret-down fa-lg"></i></span>
     </div>
 
     <div class="hypertube-comment position-relative">
       <form class="pure-form ma-t-10 ma-b-10">
         <textarea #comment_input (keyup.enter)="addComment(comment_input)" name="comment_input" rows="4"
+                  i18n-placeholder="@@comments_textarea_placeholder"
                   placeholder="live a comment" class=""></textarea>
       </form>
       <div class="text-center ma-b-5">
-        <button (click)="addComment(comment_input)" class="pure-button pure-button-primary">ADD COMMENT</button>
+        <button (click)="addComment(comment_input)" class="pure-button pure-button-primary"
+                i18n="@@comments_add_comment_btn">
+          ADD COMMENT
+        </button>
       </div>
     </div>
 
