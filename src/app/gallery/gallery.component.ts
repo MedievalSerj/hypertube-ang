@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {GalleryPreviewComponent} from '../gallery-preview/gallery-preview.component';
-import {fade} from '../common/animations';
+import {expandCollapse, fade} from '../common/animations';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
@@ -9,23 +9,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   styleUrls: ['./gallery.component.css'],
   animations: [
     fade,
-    trigger('expandCollapse', [
-      state('collapsed', style({
-        height: 0,
-        paddingTop: 0,
-        paddingBottom: 0,
-        overflow: 'hidden'
-      })),
-
-      transition('collapsed => expanded', [
-        animate('200ms')
-      ]),
-
-      transition('expanded => collapsed', [
-        animate('200ms')
-      ])
-
-    ])
+    expandCollapse
   ]
 })
 export class GalleryComponent implements OnInit {

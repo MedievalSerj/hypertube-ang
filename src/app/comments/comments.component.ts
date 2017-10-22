@@ -3,15 +3,20 @@ import {CommentsService} from '../services/comments.service';
 import {GlobalVariable} from '../global';
 import {JwtHelper} from 'angular2-jwt';
 import {ActivatedRoute} from '@angular/router';
+import {expandCollapse} from '../common/animations';
 
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.css']
+  styleUrls: ['./comments.component.css'],
+  animations: [
+    expandCollapse
+  ]
 })
 export class CommentsComponent implements OnInit {
 
+  public showComments = true;
   comments: any[] = [];
   server_path = GlobalVariable.FLASK_API_URL;
   private current_user: any;
@@ -28,7 +33,7 @@ export class CommentsComponent implements OnInit {
     this.commentsService.readOne(this.movie_id)
       .subscribe(result => {
         this.comments = result.comments;
-        console.log(this.comments);
+        // console.log(this.comments);
       });
     let token = localStorage.getItem('token');
     let jwtHelper = new JwtHelper();
@@ -40,7 +45,7 @@ export class CommentsComponent implements OnInit {
     let comment = this.initComment(comment_input.value);
     this.comments.unshift(comment);
 
-    console.log(this.comments);
+    // console.log(this.comments);
 
     this.commentsService.create({
       'movie_id': this.movie_id,
@@ -68,6 +73,10 @@ export class CommentsComponent implements OnInit {
     } else {
       return '/assets/dummy_avatar.png';
     }
+  }
+
+  show_hide_comments() {
+    return this.showComments = !this.showComments;
   }
 
 }

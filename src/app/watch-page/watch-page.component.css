@@ -16,3 +16,8 @@
   background-position: center !important;
   background-size: cover !important;
 }
+
+.summary-body {
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+}

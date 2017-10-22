@@ -46,6 +46,8 @@ import {CommentsService} from './services/comments.service';
 import {Nl2BrPipe} from "nl2br-pipe";
 import {ResetService} from './services/reset.service';
 import { CreateNewPasswdComponent } from './create-new-passwd/create-new-passwd.component';
+import {WatchService} from './services/watch.service';
+import {LanguageService} from './services/language.service';
 
 @NgModule({
   declarations: [
@@ -109,7 +111,9 @@ import { CreateNewPasswdComponent } from './create-new-passwd/create-new-passwd.
     OauthGoogleService,
     WatchedMoviesService,
     CommentsService,
-    ResetService
+    ResetService,
+    WatchService,
+    LanguageService
     // { provide: ErrorHandler, useClass: AppErrorHandler },
   ],
   bootstrap: [AppComponent]
