@@ -1,4 +1,5 @@
 #profile_avatar {
+  border: 1px solid lightgrey;
   position: relative;
   background-position: center;
   background-repeat: no-repeat;

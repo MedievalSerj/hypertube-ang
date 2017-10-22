@@ -25,14 +25,14 @@
 
       <div *ngFor="let comment of comments" class="hypertube-comment pure-g">
         <div class="text-center pure-u-1 pure-u-sm-1-4 pure-u-md-1-6 pure-u-lg-1-12">
-          <div [routerLink]="['/profile', comment.user_id]" class="display-inline-block avatar-img comment-avatar"
+          <div [routerLink]="['/profile', comment.user_id]" class="display-inline-block avatar-img comment-avatar pointer"
                [style.background-image]="'url(' + avatarUrl(comment) + ')'">
           </div>
         </div>
         <div class="pa-l-5 display-inline-block comment-msg pure-u-1 pure-u-sm-3-4 pure-u-md-5-6 pure-u-lg-11-12">
 
           <div class="ma-b-5">
-            {{ comment.login }}&nbsp;&nbsp;&nbsp;{{ comment.date_time * 1000 | date:'MMMM d, H:mm' }}
+            <span [routerLink]="['/profile', comment.user_id]" class="pointer">{{ comment.login }}</span>&nbsp;&nbsp;&nbsp;{{ comment.date_time * 1000 | date:'MMMM d, H:mm' }}
           </div>
 
           <div [innerHTML]="comment.msg | nl2br">

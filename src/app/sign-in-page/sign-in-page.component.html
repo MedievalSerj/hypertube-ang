@@ -1,5 +1,13 @@
 <div @fade class="card-preview-container log_in_width ma-auto ma-t-30">
 
+
+  <div *ngIf="notActivated" class="card ma-b-20">
+    <p class="text-warning"
+       i18n="@@sign_not_activated">
+      Please verify your email before signing in
+    </p>
+  </div>
+
   <div *ngIf="registered" class="card ma-b-20">
     <p class="text-success"
        i18n="@@sign_in_page_msg_verify_email">
@@ -45,7 +53,7 @@
           <div class="text-right ma-b-10">
             <ng-container i18n="@@sign_in_page_forgot_passwd">
               forgot password?</ng-container> <a id="reset_passwd_link" routerLink="/reset-password"
-                                                  i18n="@@sign_in_page_reset">reset</a>
+                                                 i18n="@@sign_in_page_reset">reset</a>
           </div>
           <div class="text-center">
             <button type="submit" id="btn-sign-in" class="ma-b-10 pure-button pure-button-primary"

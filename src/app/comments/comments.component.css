@@ -3,6 +3,7 @@ textarea {
 }
 
 .comment-avatar {
+  border: 1px solid lightgrey;
   position: relative;
   background-position: center !important;
   background-repeat: no-repeat !important;

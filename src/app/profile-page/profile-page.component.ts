@@ -25,8 +25,9 @@ export class ProfilePageComponent implements OnInit {
     this.userService.readOne(this.user_id)
       .subscribe(result => {
         this.user = result;
-        console.log(this.user);
-        this.user.avatar_url = GlobalVariable.FLASK_API_URL + this.user.avatar_url;
+        if (!this.user.avatar_url) this.user.avatar_url = '/assets/dummy_avatar.png';
+        else this.user.avatar_url = GlobalVariable.FLASK_API_URL + this.user.avatar_url;
       });
   }
 }
+

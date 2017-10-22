@@ -48,6 +48,7 @@ import {ResetService} from './services/reset.service';
 import { CreateNewPasswdComponent } from './create-new-passwd/create-new-passwd.component';
 import {WatchService} from './services/watch.service';
 import {LanguageService} from './services/language.service';
+import {NotAuthGuardService} from './services/not-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -86,11 +87,11 @@ import {LanguageService} from './services/language.service';
     InViewportModule,
     RouterModule.forRoot([
       { path: '', component: GalleryComponent },
-      { path: 'watch/:id', component: WatchPageComponent},
+      { path: 'watch/:id', component: WatchPageComponent, canActivate: [AuthGuardService]},
       { path: 'my-profile', component: MyProfilePageComponent, canActivate: [AuthGuardService]},
       { path: 'profile/:id', component: ProfilePageComponent, canActivate: [AuthGuardService]},
-      { path: 'sign-in', component: SignInPageComponent},
-      { path: 'sign-up', component: SignUpPageComponent},
+      { path: 'sign-in', component: SignInPageComponent, canActivate: [NotAuthGuardService]},
+      { path: 'sign-up', component: SignUpPageComponent, canActivate: [NotAuthGuardService]},
       { path: 'reset-password', component: ResetPasswordComponent},
       { path: 'oauth42', component: Oauth42Component },
       { path: 'oauth-google', component: OauthGoogleComponent },
@@ -107,6 +108,7 @@ import {LanguageService} from './services/language.service';
     EmailConfirmService,
     AuthService,
     AuthGuardService,
+    NotAuthGuardService,
     Oauth42Service,
     OauthGoogleService,
     WatchedMoviesService,

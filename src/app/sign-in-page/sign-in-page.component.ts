@@ -16,6 +16,7 @@ import {fade} from '../common/animations';
 })
 export class SignInPageComponent implements OnInit {
 
+  notActivated = false;
   registered = false;
   confirmed = false;
   confirmed_api = false;
@@ -42,9 +43,9 @@ export class SignInPageComponent implements OnInit {
     if (this.confirmed) {
       this.emailConfirmService.readOne(this.login + '/' + this.token)
         .subscribe(response => {
-          console.log(response['confirmed']);
+          // console.log(response['confirmed']);
           if (response['confirmed'] == true) {
-            console.log('just nice bp');
+            // console.log('just nice bp');
             this.confirmed_api = true;
           }
         });
@@ -62,8 +63,10 @@ export class SignInPageComponent implements OnInit {
         if (error.status === 400) {
           this.invalidLogin = true;
           // console.log('catched 401 error');
+        } else if (error.status === 401) {
+          this.notActivated= true;
         } else {
-          throw new error;
+          throw new error();
         }
       });
   }
