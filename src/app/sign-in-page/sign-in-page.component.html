@@ -1,28 +1,20 @@
 <div @fade class="card-preview-container log_in_width ma-auto ma-t-30">
 
 
-  <div *ngIf="notActivated" class="card ma-b-20">
-    <p class="text-warning"
+  <div *ngIf="notActivated || registered || confirmed_api || accessDenied" class="card ma-b-20">
+    <p *ngIf="notActivated" class="text-warning"
        i18n="@@sign_not_activated">
       Please verify your email before signing in
     </p>
-  </div>
-
-  <div *ngIf="registered" class="card ma-b-20">
-    <p class="text-success"
+    <p *ngIf="registered" class="text-success"
        i18n="@@sign_in_page_msg_verify_email">
       Your account has been created. Please verify your email before signing in
     </p>
-  </div>
-  <div *ngIf="confirmed_api" class="card ma-b-20">
-    <p class="text-success"
+    <p *ngIf="confirmed_api" class="text-success"
        i18n="@@sign_in_page_msg_congrats">
       Congratulations! You can now sign-in
     </p>
-  </div>
-
-  <div *ngIf="accessDenied" class="card ma-b-20">
-    <p class="text-success"
+    <p *ngIf="accessDenied" class="text-success"
        i18n="@@sign_in_page_msg_access_denied">
       You need to sign-in before accessing this page
     </p>
