@@ -12,5 +12,4 @@ export class WatchGuardService implements CanActivate {
     this.router.navigate(['/ooops']);
     return false;
   }
-
 }
