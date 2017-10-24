@@ -49,6 +49,7 @@ import { CreateNewPasswdComponent } from './create-new-passwd/create-new-passwd.
 import {WatchService} from './services/watch.service';
 import {LanguageService} from './services/language.service';
 import {NotAuthGuardService} from './services/not-auth-guard.service';
+import {WatchGuardService} from './services/watch-guard.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,7 @@ import {NotAuthGuardService} from './services/not-auth-guard.service';
     InViewportModule,
     RouterModule.forRoot([
       { path: '', component: GalleryComponent },
-      { path: 'watch/:id', component: WatchPageComponent, canActivate: [AuthGuardService]},
+      { path: 'watch/:id', component: WatchPageComponent, canActivate: [AuthGuardService, WatchGuardService]},
       { path: 'my-profile', component: MyProfilePageComponent, canActivate: [AuthGuardService]},
       { path: 'profile/:id', component: ProfilePageComponent, canActivate: [AuthGuardService]},
       { path: 'sign-in', component: SignInPageComponent, canActivate: [NotAuthGuardService]},
@@ -115,7 +116,8 @@ import {NotAuthGuardService} from './services/not-auth-guard.service';
     CommentsService,
     ResetService,
     WatchService,
-    LanguageService
+    LanguageService,
+    WatchGuardService
     // { provide: ErrorHandler, useClass: AppErrorHandler },
   ],
   bootstrap: [AppComponent]

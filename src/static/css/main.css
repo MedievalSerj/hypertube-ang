@@ -351,6 +351,10 @@ body {
   display: inline-block;
 }
 
+.display-block {
+  display: block;
+}
+
 /*BUTTONS OVERRIDE*/
 
 .pure-button-primary {

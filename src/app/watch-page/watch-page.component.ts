@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {expandCollapse, fade} from '../common/animations';
 import {WatchedMoviesService} from '../services/watched-movies.service';
 import {JwtHelper} from 'angular2-jwt';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {WatchService} from '../services/watch.service';
 import {GlobalVariable} from '../global';
+
 
 @Component({
   selector: 'app-watch-page',
@@ -27,13 +28,22 @@ export class WatchPageComponent implements OnInit {
 
   constructor(private watchedMovieService: WatchedMoviesService,
               private route: ActivatedRoute,
-              private watchService: WatchService) {
+              private watchService: WatchService,
+              private router: Router) {
   }
 
   ngOnInit() {
+    this.movie = JSON.parse(localStorage.getItem('movie'));
+
+    // if (this.movie == null) {
+    //   this.router.navigate(['/ooops']);
+    // }
+
+
     this.route.paramMap.subscribe(result => {
       this.movie_id = result['params'].id;
     });
+
     let token = localStorage.getItem('token');
     let jwtHelper = new JwtHelper();
     this.current_user = jwtHelper.decodeToken(token);
@@ -43,21 +53,19 @@ export class WatchPageComponent implements OnInit {
     }).subscribe();
     this.src = this.sources[0];
 
-    // console.log('id=' + localStorage.getItem('id'));
-    this.movie = JSON.parse(localStorage.getItem('movie'));
-    console.log(this.movie);
-
     this.watchService.readOne(this.movie_id + '/' + this.movie.title +
       '/' + this.movie.magnet_720 + '/' + this.movie.magnet_1080)
       .subscribe(res => {
-        console.log(res);
+        // console.log(res);
         for (let i=0; i<res.movie_url.length; i++) {
           this.sources.push(GlobalVariable.NODE_API_URL + res.movie_url[i])
         }
         this.src = this.sources[0];
 
-        console.log('srcs: ' + this.src);
+        // console.log('srcs: ' + this.src);
       });
+
+    localStorage.removeItem('movie');
   }
 
   selectSrc() {
