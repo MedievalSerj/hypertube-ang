@@ -20,8 +20,8 @@ export class GalleryPreviewComponent implements OnInit {
   public previews: any[] = [];
   public previews_backup: any[] = [];
   public watched_movies: any[] = [];
-  public searchword = null;
-  private per_page = 3;
+  public searchword = 'null';
+  private per_page = 1;
   public more_results_disabled = false;
   private current_user: any;
 
@@ -38,13 +38,13 @@ export class GalleryPreviewComponent implements OnInit {
       this.more_results_disabled = false;
 
       let uri_prefix: string;
-      if (!this.searchword)
-        uri_prefix = '0/';
-      else
-        uri_prefix = this.searchword + '/0/';
+      // if (!this.searchword)
+      //   uri_prefix = 'null' + '/0/';
+      // else
+      uri_prefix = this.searchword + '/0/';
       this.preview_service.readOne(uri_prefix + this.per_page)
         .subscribe(response => {
-          this.previews = response['search_results'];
+          this.previews = JSON.parse(response['res']);
           this.previews.sort(this.comp_title_asc);
           this.previews_backup = this.previews;
         });
@@ -77,10 +77,10 @@ export class GalleryPreviewComponent implements OnInit {
     let to = from + this.per_page;
     console.log('from: ' + from);
     console.log('to: ' + to);
-    this.preview_service.readOne(from + '/' + to)
+    this.preview_service.readOne(this.searchword + '/' +from + '/' + to)
       .subscribe(response => {
-        console.log(response['search_results']);
-        let search_results = response['search_results'];
+        console.log(JSON.parse(response['res']));
+        let search_results = JSON.parse(response['res']);
         search_results.sort(this.comp_title_asc);
         this.previews = this.previews.concat(search_results);
         this.previews_backup = this.previews.concat(search_results);

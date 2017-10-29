@@ -13,6 +13,7 @@ export class CardPreviewComponent implements OnInit {
   @Input() rating: number;
   @Input() img_url: string;
   @Input() is_seen: boolean;
+  @Input() genre: string;
   @Input() self: object;
 
   @ViewChild('movieImg') movoeImg;

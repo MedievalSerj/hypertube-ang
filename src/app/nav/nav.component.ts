@@ -26,17 +26,18 @@ export class NavComponent implements OnInit {
         });
     }
 
-    this.redirectToLang();
-    // console.log('Document language: ' + document.documentElement.lang);
+    console.log('Document language: ' + document.documentElement.lang);
+    // this.redirectToLang();
+
 
   }
 
   redirectToLang() {
-    // if (document.documentElement.lang === 'en' && this.language === 'ru') {
-    //   window.location.assign(GlobalVariable.ANGULAR_RU);
-    // } else if (document.documentElement.lang === 'ru' && this.language === 'en') {
-    //   window.location.assign(GlobalVariable.ANGULAR_EN);
-    // }
+    if (document.documentElement.lang === 'en' && this.language === 'ru') {
+      window.location.assign(GlobalVariable.ANGULAR_RU);
+    } else if (document.documentElement.lang === 'ru' && this.language === 'en') {
+      window.location.assign(GlobalVariable.ANGULAR_EN);
+    }
   }
 
   setEn() {
@@ -75,6 +76,7 @@ export class NavComponent implements OnInit {
   search(searchBox) {
     this.router.navigate(['/'],
       {queryParams: {searchWord: searchBox.value}});
+    searchBox.value = '';
   }
 
 }

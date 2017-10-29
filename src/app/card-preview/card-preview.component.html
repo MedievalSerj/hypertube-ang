@@ -19,5 +19,9 @@
     <ng-container i18n="rating @@id_card_rating">
       Rating:
     </ng-container> {{ rating }}
+    <br>
+    <ng-container i18n="rating @@id_card_genre">
+      Genre:
+    </ng-container> {{(genre | slice:0:14) + (genre.length >= 11 ? '...' : '') }}
   </p>
 </div>

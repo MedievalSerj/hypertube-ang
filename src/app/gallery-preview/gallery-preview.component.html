@@ -9,6 +9,7 @@
                     [is_seen]="movieIsSeen(card.id)"
                     [id]="card.id"
                     [self]="card"
+                    [genre]="card.genre"
     class="card-preview-container pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-lg-1-5 pure-u-xl-1-6">
   </app-card-preview>
 
@@ -16,7 +17,7 @@
 <div inViewport
      (onInViewportChange)="onInViewportChange($event)"
       class="ma-b-60">
-  <button [disabled]="more_results_disabled"
+  <button hidden [disabled]="more_results_disabled"
           (click)="getMore()"
           class="pure-button pure-button-primary"
           i18n="more results button @@id_gallery_more">
