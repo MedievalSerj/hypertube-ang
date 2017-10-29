@@ -50,6 +50,7 @@ import {WatchService} from './services/watch.service';
 import {LanguageService} from './services/language.service';
 import {NotAuthGuardService} from './services/not-auth-guard.service';
 import {WatchGuardService} from './services/watch-guard.service';
+import {SearchProgressService} from './services/search-progress.service';
 
 @NgModule({
   declarations: [
@@ -117,7 +118,8 @@ import {WatchGuardService} from './services/watch-guard.service';
     ResetService,
     WatchService,
     LanguageService,
-    WatchGuardService
+    WatchGuardService,
+    SearchProgressService,
     // { provide: ErrorHandler, useClass: AppErrorHandler },
   ],
   bootstrap: [AppComponent]

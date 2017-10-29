@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {PreviewsService} from '../services/previews.service';
 import {LanguageService} from '../services/language.service';
 import {GlobalVariable} from '../global';
+import {SearchProgressService} from '../services/search-progress.service';
 
 @Component({
   selector: 'app-nav',
@@ -16,7 +17,8 @@ export class NavComponent implements OnInit {
 
   constructor(public authService: AuthService,
               private router: Router,
-              private languageService: LanguageService) { }
+              private languageService: LanguageService,
+              private searchProgressService: SearchProgressService) { }
 
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
@@ -74,6 +76,8 @@ export class NavComponent implements OnInit {
   }
 
   search(searchBox) {
+    this.searchProgressService.showLoader();
+    this.searchProgressService.hideNoResults();
     this.router.navigate(['/'],
       {queryParams: {searchWord: searchBox.value}});
     searchBox.value = '';

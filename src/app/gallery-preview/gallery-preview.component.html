@@ -14,13 +14,21 @@
   </app-card-preview>
 
 </div>
+
+
+
 <div inViewport
      (onInViewportChange)="onInViewportChange($event)"
-      class="ma-b-60">
+      class="ma-b-20">
   <button hidden [disabled]="more_results_disabled"
           (click)="getMore()"
           class="pure-button pure-button-primary"
           i18n="more results button @@id_gallery_more">
     MORE RESULTS
   </button>
+</div>
+
+<div class="ma-auto ma-b-60">
+  <div *ngIf="searchProgressService.search_pending" class="loader ma-auto"></div>
+  <div *ngIf="searchProgressService.no_more_results">No more results found</div>
 </div>

@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {fade} from '../common/animations';
 import {WatchedMoviesService} from '../services/watched-movies.service';
 import {JwtHelper} from 'angular2-jwt';
+import {SearchProgressService} from '../services/search-progress.service';
 
 
 @Component({
@@ -25,10 +26,14 @@ export class GalleryPreviewComponent implements OnInit {
   public more_results_disabled = false;
   private current_user: any;
 
+  private from = 0;
+  // public search_pending = true;
+  // public no_more_results = false;
+
   constructor(private preview_service: PreviewsService,
               private route: ActivatedRoute,
               private watchedMoviesService: WatchedMoviesService,
-              private router: Router) {
+              public searchProgressService: SearchProgressService) {
   }
 
 
@@ -38,17 +43,33 @@ export class GalleryPreviewComponent implements OnInit {
       this.more_results_disabled = false;
 
       let uri_prefix: string;
-      // if (!this.searchword)
-      //   uri_prefix = 'null' + '/0/';
-      // else
       uri_prefix = this.searchword + '/0/';
+
+      console.log('uri_prefix: ' + uri_prefix);
+      console.log('this.per_page: ' + this.per_page);
+
+
+
       this.preview_service.readOne(uri_prefix + this.per_page)
         .subscribe(response => {
           this.previews = JSON.parse(response['res']);
+
+          if (this.previews.length < 20) {
+
+            this.searchProgressService.showNoResults();
+          }
+
+          this.from += 1;
+
           this.previews.sort(this.comp_title_asc);
           this.previews_backup = this.previews;
+          this.searchProgressService.hideLoader();
         });
+
+
     });
+
+
     let token = localStorage.getItem('token');
     if (token) {
       let jwtHelper = new JwtHelper();
@@ -73,20 +94,33 @@ export class GalleryPreviewComponent implements OnInit {
   }
 
   getMore() {
-    let from = this.previews.length;
-    let to = from + this.per_page;
-    console.log('from: ' + from);
+    this.searchProgressService.showLoader();
+    this.searchProgressService.hideNoResults();
+
+    // let from = this.previews.length;
+    let to = this.from + this.per_page;
+    console.log('from: ' + this.from);
     console.log('to: ' + to);
-    this.preview_service.readOne(this.searchword + '/' +from + '/' + to)
+    this.preview_service.readOne(this.searchword + '/' + this.from + '/' + to)
       .subscribe(response => {
         console.log(JSON.parse(response['res']));
         let search_results = JSON.parse(response['res']);
+
+        this.from += 1;
+
+        if (search_results.length < 20) {
+          this.searchProgressService.showNoResults();
+        }
+
         search_results.sort(this.comp_title_asc);
         this.previews = this.previews.concat(search_results);
         this.previews_backup = this.previews.concat(search_results);
-        if (search_results.length < this.per_page) {
+
+        if (search_results.length < 20) {
           this.more_results_disabled = true;
         }
+
+        this.searchProgressService.hideLoader();
       });
   }
 
