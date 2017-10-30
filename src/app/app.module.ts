@@ -51,6 +51,7 @@ import {LanguageService} from './services/language.service';
 import {NotAuthGuardService} from './services/not-auth-guard.service';
 import {WatchGuardService} from './services/watch-guard.service';
 import {SearchProgressService} from './services/search-progress.service';
+import {LangRedirectService} from './services/lang-redirect.service';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import {SearchProgressService} from './services/search-progress.service';
     LanguageService,
     WatchGuardService,
     SearchProgressService,
+    LangRedirectService
     // { provide: ErrorHandler, useClass: AppErrorHandler },
   ],
   bootstrap: [AppComponent]

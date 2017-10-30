@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {LanguageService} from '../services/language.service';
 import {GlobalVariable} from '../global';
 import {SearchProgressService} from '../services/search-progress.service';
+import {LangRedirectService} from '../services/lang-redirect.service';
 
 @Component({
   selector: 'app-nav',
@@ -17,15 +18,19 @@ export class NavComponent implements OnInit {
   constructor(public authService: AuthService,
               private router: Router,
               private languageService: LanguageService,
-              private searchProgressService: SearchProgressService) { }
+              private searchProgressService: SearchProgressService,
+              public langRedirectService: LangRedirectService) {
+    this.language = langRedirectService.language;
+  }
 
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.languageService.readOne(this.authService.currentUser.user_id)
         .subscribe(res => {
           console.log('User language: ' + res.language);
-          this.language = res.language;
-
+          // this.language = res.language;
+          this.langRedirectService.setLang(res.language);
+          this.langRedirectService.redirectToLang();
         });
     }
 
@@ -35,42 +40,70 @@ export class NavComponent implements OnInit {
 
   }
 
-  redirectToLang() {
-    if (document.documentElement.lang === 'en' && this.language === 'ru') {
-      GlobalVariable.CURRENT = GlobalVariable.ANGULAR_RU;
-      window.location.assign(GlobalVariable.CURRENT);
-    } else if (document.documentElement.lang === 'ru' && this.language === 'en') {
-      GlobalVariable.CURRENT = GlobalVariable.ANGULAR_EN;
-      window.location.assign(GlobalVariable.CURRENT);
-    }
-  }
+
 
   setEn() {
-    if (this.language !== 'en') {
-      let resource = {
-        user_id: this.authService.currentUser.user_id,
-        language: 'en'
-      };
-      this.languageService.update(resource)
-        .subscribe(res => {
-          this.language = 'en';
-          this.redirectToLang();
-        });
+    if (this.langRedirectService.language !== 'en') {
+
+      if (this.authService.isLoggedIn()) {
+        let resource = {
+          user_id: this.authService.currentUser.user_id,
+          language: 'en'
+        };
+        this.languageService.update(resource)
+          .subscribe(res => {
+            this.langRedirectService.setLang('en');
+            this.langRedirectService.redirectToLang();
+          });
+      } else {
+        this.langRedirectService.setLang('en');
+        this.langRedirectService.redirectToLang();
+      }
     }
+    // }
+    //     if (this.language !== 'en') {
+    //   let resource = {
+    //     user_id: this.authService.currentUser.user_id,
+    //     language: 'en'
+    //   };
+    //   this.languageService.update(resource)
+    //     .subscribe(res => {
+    //       this.language = 'en';
+    //       this.redirectToLang();
+    //     });
+    // }
   }
 
   setRu() {
-    if (this.language !== 'ru') {
-      let resource = {
-        user_id: this.authService.currentUser.user_id,
-        language: 'ru'
-      };
-      this.languageService.update(resource)
-        .subscribe(res => {
-          this.language = 'ru';
-          this.redirectToLang();
-        });
+    if (this.langRedirectService.language !== 'ru') {
+
+      if (this.authService.isLoggedIn()) {
+        let resource = {
+          user_id: this.authService.currentUser.user_id,
+          language: 'ru'
+        };
+        this.languageService.update(resource)
+          .subscribe(res => {
+            this.langRedirectService.setLang('ru');
+            this.langRedirectService.redirectToLang();
+          });
+      } else {
+        this.langRedirectService.setLang('ru');
+        this.langRedirectService.redirectToLang();
+      }
     }
+
+    // if (this.language !== 'ru') {
+    //   let resource = {
+    //     user_id: this.authService.currentUser.user_id,
+    //     language: 'ru'
+    //   };
+    //   this.languageService.update(resource)
+    //     .subscribe(res => {
+    //       this.language = 'ru';
+    //       this.redirectToLang();
+    //     });
+    // }
   }
 
   logOut() {
