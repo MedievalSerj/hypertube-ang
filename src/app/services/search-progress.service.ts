@@ -22,5 +22,4 @@ export class SearchProgressService {
   hideNoResults() {
     this.no_more_results = false;
   }
-
 }

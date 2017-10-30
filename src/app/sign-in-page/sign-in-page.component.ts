@@ -86,7 +86,7 @@ export class SignInPageComponent implements OnInit {
     let queryString: string;
     let queryParams = {
       client_id: '135caaea196569df717378f2950cfb4833e1a936d8c3c4a5f56f57fbec6935a4',
-      redirect_uri: GlobalVariable.REDIRECT_42_URL,
+      redirect_uri: GlobalVariable.CURRENT + '/oauth42',
       scope: 'public',
       response_type: 'code'
     };
@@ -99,7 +99,7 @@ export class SignInPageComponent implements OnInit {
     let queryString: string;
     let queryParams = {
       client_id: '248773064708-bqnk5a6iq0lsa274bdcf5ije21lmqi5p.apps.googleusercontent.com',
-      redirect_uri: GlobalVariable.REDIRECT_GOOGLE_URL,
+      redirect_uri: GlobalVariable.CURRENT + '/oauth-google',
       scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
       access_type: 'online',
       response_type: 'code'

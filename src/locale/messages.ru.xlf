@@ -73,9 +73,28 @@
   <target>ЕЩЕ</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/gallery-preview/gallery-preview.component.ts</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">26</context>
         </context-group>
         <note priority="1" from="description">more results button </note>
+      </trans-unit>
+       <trans-unit id="id_gallery_no_more_results" datatype="html">
+        <source>No more results found</source>
+        <target>ПОИСК ЗАВЕРШЕН</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/gallery-preview/gallery-preview.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="id_card_genre" datatype="html">
+        <source>
+      Genre:
+    </source>
+    <target>Жанр:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/card-preview/card-preview.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <note priority="1" from="description">rating </note>
       </trans-unit>
       <trans-unit id="id_filters" datatype="html">
         <source>

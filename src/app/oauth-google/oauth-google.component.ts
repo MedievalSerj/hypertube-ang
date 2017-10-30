@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OauthGoogleService} from '../services/oauth-google.service';
 import {fade} from '../common/animations';
+import {GlobalVariable} from '../global';
 
 @Component({
   selector: 'app-oauth-google',
@@ -24,7 +25,8 @@ export class OauthGoogleComponent implements OnInit {
   ngOnInit() {
     this.code = this.route.snapshot.queryParamMap.get('code');
     console.log('code: ' + this.code);
-    this.oauth_google_service.create({code: this.code})
+    this.oauth_google_service.create({code: this.code,
+                                      redirect_uri: GlobalVariable.CURRENT + '/oauth-google'})
       .subscribe(response => {
         console.log(response);
         if (response['token']) {

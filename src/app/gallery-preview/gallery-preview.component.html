@@ -30,5 +30,6 @@
 
 <div class="ma-auto ma-b-60">
   <div *ngIf="searchProgressService.search_pending" class="loader ma-auto"></div>
-  <div *ngIf="searchProgressService.no_more_results">No more results found</div>
+  <div *ngIf="searchProgressService.no_more_results" style="color: #777"
+        i18n="@@id_gallery_no_more_results">No more results found</div>
 </div>

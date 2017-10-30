@@ -4,6 +4,7 @@ import {Oauth42Service} from '../services/oauth42.service';
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {fade} from '../common/animations';
+import {GlobalVariable} from '../global';
 
 @Component({
   selector: 'app-oauth42',
@@ -27,7 +28,8 @@ export class Oauth42Component implements OnInit {
     this.code = this.route.snapshot.queryParamMap.get('code');
     console.log('code: ' + this.code);
 
-    this.oauth42Service.readOne(this.code)
+    this.oauth42Service.create({code: this.code,
+                                redirect_uri: GlobalVariable.CURRENT + '/oauth42'})
       .subscribe(response => {
         console.log(response);
         if (response['token']) {

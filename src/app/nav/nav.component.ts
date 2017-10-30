@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
-import {PreviewsService} from '../services/previews.service';
 import {LanguageService} from '../services/language.service';
 import {GlobalVariable} from '../global';
 import {SearchProgressService} from '../services/search-progress.service';
@@ -24,7 +23,9 @@ export class NavComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.languageService.readOne(this.authService.currentUser.user_id)
         .subscribe(res => {
+          console.log('User language: ' + res.language);
           this.language = res.language;
+
         });
     }
 
@@ -36,9 +37,11 @@ export class NavComponent implements OnInit {
 
   redirectToLang() {
     if (document.documentElement.lang === 'en' && this.language === 'ru') {
-      window.location.assign(GlobalVariable.ANGULAR_RU);
+      GlobalVariable.CURRENT = GlobalVariable.ANGULAR_RU;
+      window.location.assign(GlobalVariable.CURRENT);
     } else if (document.documentElement.lang === 'ru' && this.language === 'en') {
-      window.location.assign(GlobalVariable.ANGULAR_EN);
+      GlobalVariable.CURRENT = GlobalVariable.ANGULAR_EN;
+      window.location.assign(GlobalVariable.CURRENT);
     }
   }
 
