@@ -22,6 +22,7 @@ export class GalleryPreviewComponent implements OnInit {
   public previews_backup: any[] = [];
   public watched_movies: any[] = [];
   public searchword = 'null';
+  public previousSearchword = 'null';
   private per_page = 1;
   public more_results_disabled = false;
   private current_user: any;
@@ -42,6 +43,8 @@ export class GalleryPreviewComponent implements OnInit {
       this.searchword = params.get('searchWord');
       this.more_results_disabled = false;
 
+      if (this.previousSearchword !== this.searchword) this.from = 0;
+
       let uri_prefix: string;
       uri_prefix = this.searchword + '/0/';
 
@@ -49,17 +52,19 @@ export class GalleryPreviewComponent implements OnInit {
       console.log('this.per_page: ' + this.per_page);
 
 
-
       this.preview_service.readOne(uri_prefix + this.per_page)
         .subscribe(response => {
           this.previews = JSON.parse(response['res']);
 
-          if (this.previews.length < 20) {
-
-            this.searchProgressService.showNoResults();
-          }
+          this.previousSearchword = this.searchword;
 
           this.from += 1;
+
+          this.previews = this.previews.filter(this.nullFilter);
+
+          if (this.previews.length == 0) {
+            this.searchProgressService.showNoResults();
+          }
 
           this.previews.sort(this.comp_title_asc);
           this.previews_backup = this.previews;
@@ -82,6 +87,11 @@ export class GalleryPreviewComponent implements OnInit {
     }
   }
 
+  nullFilter(value) {
+    if (value) return true;
+    return false;
+  }
+
   movieIsSeen(movie_id) {
     return this.watched_movies.indexOf(movie_id) != -1;
   }
@@ -97,7 +107,8 @@ export class GalleryPreviewComponent implements OnInit {
     this.searchProgressService.showLoader();
     this.searchProgressService.hideNoResults();
 
-    // let from = this.previews.length;
+    if (this.previousSearchword !== this.searchword) this.from = 0;
+
     let to = this.from + this.per_page;
     console.log('from: ' + this.from);
     console.log('to: ' + to);
@@ -108,7 +119,11 @@ export class GalleryPreviewComponent implements OnInit {
 
         this.from += 1;
 
-        if (search_results.length < 20) {
+        this.previousSearchword = this.searchword;
+
+        search_results = search_results.filter(this.nullFilter);
+
+        if (search_results.length == 0) {
           this.searchProgressService.showNoResults();
         }
 
@@ -116,7 +131,7 @@ export class GalleryPreviewComponent implements OnInit {
         this.previews = this.previews.concat(search_results);
         this.previews_backup = this.previews.concat(search_results);
 
-        if (search_results.length < 20) {
+        if (search_results.length == 0) {
           this.more_results_disabled = true;
         }
 
