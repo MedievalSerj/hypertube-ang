@@ -7,6 +7,8 @@ import {WatchService} from '../services/watch.service';
 import {GlobalVariable} from '../global';
 
 
+import {Http} from '@angular/http';
+
 @Component({
   selector: 'app-watch-page',
   templateUrl: './watch-page.component.html',
@@ -25,21 +27,18 @@ export class WatchPageComponent implements OnInit {
   src_txt = '720p';
   src;
   sources = [];
+  subtitles = [null, null];
+  video_loaded = false;
 
   constructor(private watchedMovieService: WatchedMoviesService,
               private route: ActivatedRoute,
-              private watchService: WatchService,
-              private router: Router) {
+              private watchService: WatchService) {
   }
 
   ngOnInit() {
     this.movie = JSON.parse(localStorage.getItem('movie'));
 
     console.log(this.movie);
-
-    // if (this.movie == null) {
-    //   this.router.navigate(['/ooops']);
-    // }
 
 
     this.route.paramMap.subscribe(result => {
@@ -54,42 +53,29 @@ export class WatchPageComponent implements OnInit {
       user_id: this.current_user.user_id
     }).subscribe();
 
-    // this.sources = [
-    //   'http://localhost:5000/static/video/Cult.Of.Chucky.2017.720p.BluRay.x264-[YTS.AG].mp4',
-    //   'http://localhost:5000/static/video/Cult.Of.Chucky.2017.1080p.BluRay.x264-[YTS.AG].mp4'
-    // ];
-
-    // this.src = this.sources[0];
-
-    // console.log('magnt_720: ' + encodeURIComponent(this.movie.magnt_1080));
-
     this.watchService.readOne(this.movie_id + '/' + this.movie.title +
       '/' + encodeURIComponent(this.movie.magnt_720) + '/' + encodeURIComponent(this.movie.magnt_1080))
       .subscribe(res => {
-        // console.log(res);
-        // setTimeout(() => {
-          for (let i=0; i<res.movie_url.length; i++) {
-            this.sources.push(GlobalVariable.NODE_API_URL + '/' + res.movie_url[i])
-          }
-          // console.log('srcs: ' + this.sources);
-          this.src = this.sources[0];
-        // }, 5000);
-
-
-
+        if (res.downloaded) {
+          this.updateSrcs(res);
+        } else {
+          setTimeout(()=>{
+            this.updateSrcs(res);
+          }, 20000);
+        }
       });
-
-
-    // this.watchService.readOne(this.movie_id + '/' + this.movie.title +
-    //   '/' + this.movie.magnet_720 + '/' + this.movie.magnet_1080)
-    //   .subscribe(res => {
-    //     for (let i=0; i<res.movie_url.length; i++) {
-    //       this.sources.push(GlobalVariable.NODE_API_URL + res.movie_url[i])
-    //     }
-    //     this.src = this.sources[0];
-    //   });
-
     localStorage.removeItem('movie');
+  }
+
+  updateSrcs(res) {
+    for (let i=0; i<res.movie_url.length; i++) {
+      this.sources.push(GlobalVariable.NODE_API_URL + '/' + res.movie_url[i])
+    }
+    for (let i=0; i<res.subtitles_url.length; i++) {
+      this.subtitles[i] = GlobalVariable.NODE_API_URL + '/' + res.subtitles_url[i];
+    }
+    this.src = this.sources[0];
+    this.video_loaded = true;
   }
 
   selectSrc() {

@@ -27,9 +27,9 @@ export class GalleryPreviewComponent implements OnInit {
   public more_results_disabled = false;
   private current_user: any;
 
+  private initiated = false;
+
   private from = 0;
-  // public search_pending = true;
-  // public no_more_results = false;
 
   constructor(private preview_service: PreviewsService,
               private route: ActivatedRoute,
@@ -39,6 +39,10 @@ export class GalleryPreviewComponent implements OnInit {
 
 
   ngOnInit() {
+    this.searchProgressService.showLoader();
+    this.searchProgressService.hideNoResults();
+
+
     this.route.queryParamMap.subscribe(params => {
       this.searchword = params.get('searchWord');
       this.more_results_disabled = false;
@@ -69,6 +73,8 @@ export class GalleryPreviewComponent implements OnInit {
           this.previews.sort(this.comp_title_asc);
           this.previews_backup = this.previews;
           this.searchProgressService.hideLoader();
+
+          this.initiated = true;
         });
 
 
@@ -98,8 +104,9 @@ export class GalleryPreviewComponent implements OnInit {
 
   onInViewportChange(inViewport: boolean) {
     if (inViewport) {
-      this.getMore();
-      console.log('BP');
+      if (this.initiated)
+        this.getMore();
+      // console.log('BP');
     }
   }
 
@@ -110,31 +117,21 @@ export class GalleryPreviewComponent implements OnInit {
     if (this.previousSearchword !== this.searchword) this.from = 0;
 
     let to = this.from + this.per_page;
-    console.log('from: ' + this.from);
-    console.log('to: ' + to);
     this.preview_service.readOne(this.searchword + '/' + this.from + '/' + to)
       .subscribe(response => {
-        console.log(JSON.parse(response['res']));
         let search_results = JSON.parse(response['res']);
-
         this.from += 1;
-
         this.previousSearchword = this.searchword;
-
         search_results = search_results.filter(this.nullFilter);
-
         if (search_results.length == 0) {
           this.searchProgressService.showNoResults();
         }
-
         search_results.sort(this.comp_title_asc);
         this.previews = this.previews.concat(search_results);
         this.previews_backup = this.previews.concat(search_results);
-
         if (search_results.length == 0) {
           this.more_results_disabled = true;
         }
-
         this.searchProgressService.hideLoader();
       });
   }

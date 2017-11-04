@@ -1,7 +1,7 @@
 <div @fade class="pure-g watch_width ma-auto">
   <div class="card-preview-container pure-u-1 pure-u-sm-1 pure-u-md-3-4">
 
-    <vg-player>
+    <vg-player *ngIf="video_loaded">
       <vg-overlay-play></vg-overlay-play>
       <vg-buffering></vg-buffering>
 
@@ -35,12 +35,16 @@
              [attr.src]="src"
              #media id="singleVideo" preload="auto" crossorigin>
 
-        <!--<track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"-->
-               <!--srclang="en">-->
-        <!--<track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"-->
-               <!--srclang="es">-->
+        <track kind="subtitles" label="EN" [attr.src]="subtitles[0]"
+               srclang="en">
+        <track kind="subtitles" label="RU" [attr.src]="subtitles[1]"
+               srclang="ru">
       </video>
     </vg-player>
+
+  <div class="card" *ngIf="!video_loaded">
+      <div class="loader ma-auto"></div>
+  </div>
 
 
   </div>

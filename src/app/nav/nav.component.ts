@@ -112,10 +112,12 @@ export class NavComponent implements OnInit {
   }
 
   search(searchBox) {
+    let toSearch = searchBox.value;
+    if (searchBox.value === '') toSearch = 'null';
     this.searchProgressService.showLoader();
     this.searchProgressService.hideNoResults();
     this.router.navigate(['/'],
-      {queryParams: {searchWord: searchBox.value}});
+      {queryParams: {searchWord: toSearch}});
     searchBox.value = '';
   }
 
