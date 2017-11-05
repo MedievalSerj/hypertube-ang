@@ -7,7 +7,7 @@ import {GlobalVariable} from '../global';
 export class ResetService extends DataService {
 
   constructor(http: Http) {
-    super(http);
+    super(http, null);
     this.url = GlobalVariable.FLASK_API_URL + '/reset';
   }
 

@@ -7,7 +7,7 @@ import {GlobalVariable} from '../global';
 export class WatchService extends DataService {
 
   constructor(http: Http) {
-    super(http);
+    super(http, null);
     this.url = GlobalVariable.NODE_API_URL + '/watch';
   }
 
