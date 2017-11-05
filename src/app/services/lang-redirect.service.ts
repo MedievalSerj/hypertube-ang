@@ -17,11 +17,13 @@ export class LangRedirectService {
     if (document.documentElement.lang === 'en' && this.language === 'ru') {
       GlobalVariable.CURRENT = GlobalVariable.ANGULAR_RU;
       if (this.authService.isLoggedIn()) this.authService.logout();
-      window.location.assign(GlobalVariable.CURRENT);
+      window.location.assign(GlobalVariable.ANGULAR_RU);
+      // window.location.assign(GlobalVariable.CURRENT);
     } else if (document.documentElement.lang === 'ru' && this.language === 'en') {
       GlobalVariable.CURRENT = GlobalVariable.ANGULAR_EN;
       if (this.authService.isLoggedIn()) this.authService.logout();
-      window.location.assign(GlobalVariable.CURRENT);
+      window.location.assign(GlobalVariable.ANGULAR_EN);
+      // window.location.assign(GlobalVariable.CURRENT);
     }
   }
 

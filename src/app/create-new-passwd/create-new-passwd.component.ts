@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators, AbstractControl, ValidationErrors} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MyValidators} from '../common/validators/my.validators';
 import {ResetService} from '../services/reset.service';

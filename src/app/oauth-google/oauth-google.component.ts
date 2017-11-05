@@ -24,11 +24,9 @@ export class OauthGoogleComponent implements OnInit {
 
   ngOnInit() {
     this.code = this.route.snapshot.queryParamMap.get('code');
-    console.log('code: ' + this.code);
     this.oauth_google_service.create({code: this.code,
                                       redirect_uri: GlobalVariable.CURRENT + '/oauth-google'})
       .subscribe(response => {
-        console.log(response);
         if (response['token']) {
           localStorage.setItem('token', response['token']);
           this.router.navigate(['/']);
@@ -41,5 +39,4 @@ export class OauthGoogleComponent implements OnInit {
           this.loader_pending = false;
       });
   }
-
 }

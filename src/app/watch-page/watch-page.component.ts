@@ -2,12 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {expandCollapse, fade} from '../common/animations';
 import {WatchedMoviesService} from '../services/watched-movies.service';
 import {JwtHelper} from 'angular2-jwt';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {WatchService} from '../services/watch.service';
 import {GlobalVariable} from '../global';
 
-
-import {Http} from '@angular/http';
 
 @Component({
   selector: 'app-watch-page',
@@ -37,14 +35,9 @@ export class WatchPageComponent implements OnInit {
 
   ngOnInit() {
     this.movie = JSON.parse(localStorage.getItem('movie'));
-
-    console.log(this.movie);
-
-
     this.route.paramMap.subscribe(result => {
       this.movie_id = result['params'].id;
     });
-
     let token = localStorage.getItem('token');
     let jwtHelper = new JwtHelper();
     this.current_user = jwtHelper.decodeToken(token);
@@ -61,7 +54,7 @@ export class WatchPageComponent implements OnInit {
         } else {
           setTimeout(()=>{
             this.updateSrcs(res);
-          }, 20000);
+          }, 5000);
         }
       });
     localStorage.removeItem('movie');
@@ -88,7 +81,6 @@ export class WatchPageComponent implements OnInit {
         this.src_txt = '720p';
       }
     }
-    console.log('new src: ' + this.src);
   }
 
   show_hide_summary() {

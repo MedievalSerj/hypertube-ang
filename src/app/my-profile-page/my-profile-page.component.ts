@@ -11,5 +11,4 @@ export class MyProfilePageComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

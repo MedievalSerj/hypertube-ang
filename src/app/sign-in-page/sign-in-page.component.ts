@@ -43,9 +43,7 @@ export class SignInPageComponent implements OnInit {
     if (this.confirmed) {
       this.emailConfirmService.readOne(this.login + '/' + this.token)
         .subscribe(response => {
-          // console.log(response['confirmed']);
           if (response['confirmed'] == true) {
-            // console.log('just nice bp');
             this.confirmed_api = true;
           }
         });
@@ -62,7 +60,6 @@ export class SignInPageComponent implements OnInit {
       error => {
         if (error.status === 400) {
           this.invalidLogin = true;
-          // console.log('catched 401 error');
         } else if (error.status === 401) {
           this.notActivated= true;
         } else {
@@ -91,7 +88,6 @@ export class SignInPageComponent implements OnInit {
       response_type: 'code'
     };
     queryString = this.encodeQueryParams(queryParams);
-    console.log('queryString: ' + queryString);
     window.location.href = this.oAuth42_url + '?' + queryString;
   }
 
@@ -106,7 +102,6 @@ export class SignInPageComponent implements OnInit {
     };
 
     queryString = this.encodeQueryParams(queryParams);
-    console.log('queryString: ' + queryString);
     window.location.href = this.oAuthGoogle_url + '?' + queryString;
   }
 }

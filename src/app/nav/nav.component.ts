@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
 import {LanguageService} from '../services/language.service';
-import {GlobalVariable} from '../global';
 import {SearchProgressService} from '../services/search-progress.service';
 import {LangRedirectService} from '../services/lang-redirect.service';
 
@@ -27,20 +26,11 @@ export class NavComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.languageService.readOne(this.authService.currentUser.user_id)
         .subscribe(res => {
-          console.log('User language: ' + res.language);
-          // this.language = res.language;
           this.langRedirectService.setLang(res.language);
           this.langRedirectService.redirectToLang();
         });
     }
-
-    console.log('Document language: ' + document.documentElement.lang);
-    // this.redirectToLang();
-
-
   }
-
-
 
   setEn() {
     if (this.langRedirectService.language !== 'en') {
@@ -60,18 +50,6 @@ export class NavComponent implements OnInit {
         this.langRedirectService.redirectToLang();
       }
     }
-    // }
-    //     if (this.language !== 'en') {
-    //   let resource = {
-    //     user_id: this.authService.currentUser.user_id,
-    //     language: 'en'
-    //   };
-    //   this.languageService.update(resource)
-    //     .subscribe(res => {
-    //       this.language = 'en';
-    //       this.redirectToLang();
-    //     });
-    // }
   }
 
   setRu() {
@@ -92,18 +70,6 @@ export class NavComponent implements OnInit {
         this.langRedirectService.redirectToLang();
       }
     }
-
-    // if (this.language !== 'ru') {
-    //   let resource = {
-    //     user_id: this.authService.currentUser.user_id,
-    //     language: 'ru'
-    //   };
-    //   this.languageService.update(resource)
-    //     .subscribe(res => {
-    //       this.language = 'ru';
-    //       this.redirectToLang();
-    //     });
-    // }
   }
 
   logOut() {
@@ -120,5 +86,4 @@ export class NavComponent implements OnInit {
       {queryParams: {searchWord: toSearch}});
     searchBox.value = '';
   }
-
 }

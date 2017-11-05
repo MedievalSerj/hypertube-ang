@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, RequestOptions, Headers, RequestOptionsArgs} from '@angular/http';
+import {Http} from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
@@ -44,6 +44,7 @@ export class DataService {
   }
 
   private handleError(error: Response) {
+    console.log('DATA IS SUPPER');
     return Observable.throw(new Error());
   }
 }

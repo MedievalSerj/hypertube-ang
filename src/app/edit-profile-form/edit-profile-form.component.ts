@@ -60,7 +60,6 @@ export class EditProfileFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.authService.currentUser);
     if (this.authService.currentUser.avatar_url)
       this.display_cross = true;
   }
@@ -68,12 +67,8 @@ export class EditProfileFormComponent implements OnInit {
   updateProfile() {
     let resource = this.initResource(this.authService.currentUser.user_id,
       this.form.value);
-
-    console.log(resource);
-
     this.userService.update(resource)
       .subscribe(response => {
-        console.log(response);
         localStorage.setItem('token', response['token']);
       });
   }

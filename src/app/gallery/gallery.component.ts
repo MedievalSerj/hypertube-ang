@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {GalleryPreviewComponent} from '../gallery-preview/gallery-preview.component';
 import {expandCollapse, fade} from '../common/animations';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+
 
 @Component({
   selector: 'app-gallery',
@@ -22,9 +22,7 @@ export class GalleryComponent implements OnInit {
   rating_filter_to: string;
   year_filter_from: string;
   year_filter_to: string;
-
   show_order_filters = false;
-
   title_order = true;
   genre_order = true;
   rating_order = true;

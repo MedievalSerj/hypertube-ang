@@ -48,14 +48,10 @@ export class MyValidators {
 
 
   static confirmPassword(control: AbstractControl) {
-
     let passwd = control.get('passwd').value;
     let confirm_passwd = control.get('confirm_passwd').value;
-
     if (passwd !== confirm_passwd)
       return {confirmPassword: true};
     return null;
   }
-
-
 }

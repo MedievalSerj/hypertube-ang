@@ -50,7 +50,6 @@ export class SignUpFormComponent {
   }
 
   register() {
-    // console.log(this.form.value);
     this.userService.create(this.form.value)
       .subscribe(response => {
         this.router.navigate(['/sign-in'], {

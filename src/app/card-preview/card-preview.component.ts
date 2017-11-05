@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -37,9 +37,6 @@ export class CardPreviewComponent implements OnInit {
   }
 
   public watch(event) {
-    // console.log(this.self);
-    // console.log(this.self['id']);
-
     localStorage.setItem('movie', JSON.stringify(this.self));
     this.router.navigate(['/watch', this.id]);
 

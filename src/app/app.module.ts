@@ -121,8 +121,8 @@ import {LangRedirectService} from './services/lang-redirect.service';
     LanguageService,
     WatchGuardService,
     SearchProgressService,
-    LangRedirectService
-    // { provide: ErrorHandler, useClass: AppErrorHandler },
+    LangRedirectService,
+    { provide: ErrorHandler, useClass: AppErrorHandler },
   ],
   bootstrap: [AppComponent]
 })

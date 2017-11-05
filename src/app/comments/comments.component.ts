@@ -33,7 +33,6 @@ export class CommentsComponent implements OnInit {
     this.commentsService.readOne(this.movie_id)
       .subscribe(result => {
         this.comments = result.comments;
-        // console.log(this.comments);
       });
     let token = localStorage.getItem('token');
     let jwtHelper = new JwtHelper();
@@ -44,9 +43,6 @@ export class CommentsComponent implements OnInit {
 
     let comment = this.initComment(comment_input.value);
     this.comments.unshift(comment);
-
-    // console.log(this.comments);
-
     this.commentsService.create({
       'movie_id': this.movie_id,
       'user_id': this.current_user.user_id,

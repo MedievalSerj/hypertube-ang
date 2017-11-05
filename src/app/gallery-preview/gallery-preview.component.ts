@@ -42,42 +42,26 @@ export class GalleryPreviewComponent implements OnInit {
     this.searchProgressService.showLoader();
     this.searchProgressService.hideNoResults();
 
-
     this.route.queryParamMap.subscribe(params => {
       this.searchword = params.get('searchWord');
       this.more_results_disabled = false;
-
       if (this.previousSearchword !== this.searchword) this.from = 0;
-
       let uri_prefix: string;
       uri_prefix = this.searchword + '/0/';
-
-      console.log('uri_prefix: ' + uri_prefix);
-      console.log('this.per_page: ' + this.per_page);
-
-
       this.preview_service.readOne(uri_prefix + this.per_page)
         .subscribe(response => {
           this.previews = JSON.parse(response['res']);
-
           this.previousSearchword = this.searchword;
-
           this.from += 1;
-
           this.previews = this.previews.filter(this.nullFilter);
-
           if (this.previews.length == 0) {
             this.searchProgressService.showNoResults();
           }
-
           this.previews.sort(this.comp_title_asc);
           this.previews_backup = this.previews;
           this.searchProgressService.hideLoader();
-
           this.initiated = true;
         });
-
-
     });
 
 
@@ -106,17 +90,15 @@ export class GalleryPreviewComponent implements OnInit {
     if (inViewport) {
       if (this.initiated)
         this.getMore();
-      // console.log('BP');
     }
   }
 
   getMore() {
     this.searchProgressService.showLoader();
     this.searchProgressService.hideNoResults();
-
     if (this.previousSearchword !== this.searchword) this.from = 0;
-
     let to = this.from + this.per_page;
+
     this.preview_service.readOne(this.searchword + '/' + this.from + '/' + to)
       .subscribe(response => {
         let search_results = JSON.parse(response['res']);
