@@ -12,7 +12,7 @@ import {LangRedirectService} from '../services/lang-redirect.service';
 })
 export class NavComponent implements OnInit {
 
-  public language = 'en';
+  public language = 'ru';
 
   constructor(public authService: AuthService,
               private router: Router,

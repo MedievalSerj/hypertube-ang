@@ -5,7 +5,7 @@ import {AuthService} from './auth.service';
 @Injectable()
 export class LangRedirectService {
 
-  public language = 'en';
+  public language = 'ru';
 
   constructor(private authService: AuthService) { }
 
